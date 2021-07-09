@@ -5,6 +5,7 @@
 
     .video {
         width: calc(100% - 30rem);
+        transition: all 0.15s cubic-bezier(0.165, 0.84, 0.44, 1);
 
         .content-scrollable {
             height: 100%;
@@ -41,9 +42,20 @@
 
     .lessons-nav {
         width: 30rem;
+        transition: all 0.15s cubic-bezier(0.165, 0.84, 0.44, 1);
 
         @media screen and (max-width: 991px) {
             display: none;
         }
+    }
+}
+
+.detail-lesson-section.hide-side-nav {
+    .video {
+        width: 100%;
+    }
+
+    .lessons-nav {
+        width: 0;
     }
 }

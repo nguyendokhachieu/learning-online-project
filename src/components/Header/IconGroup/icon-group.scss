@@ -1,0 +1,78 @@
+@import "../../../assets/scss/variables";
+
+.icon-group {
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+
+    .icon-wrap {
+
+        .link {
+            display: inline-block;
+            height: 100%;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+
+            .icon {
+                font-size: 1.8rem;
+                color: $light;
+            }
+
+            .img {
+                width: 3rem;
+                height: 3rem;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .icon-wrap.user-avatar {
+        position: relative;
+
+        .link {
+            padding: 0 1rem;
+        }
+    }
+
+    .icon-wrap.login-button {
+        padding: 0.6rem;
+
+        .link {
+            color: #fff;
+            background-color: $pink;
+            border: 2px solid $pink;
+            font-size: 1.6rem;
+            transition: all 0.15s ease;
+            
+            &:hover {
+                box-shadow: 0 0 5px 0 $pink;
+            }
+        }
+    }
+
+    .icon-wrap.active {
+
+        .link {
+            color: #fff;
+            background-color: #222529;
+        }
+    }
+
+    .icon-wrap.notifications-icon {
+        position: relative;
+    }
+
+    .icon-wrap.courses-icon {
+        position: relative;
+    }
+
+    .icon-wrap.hamburger {
+        display: none;
+
+        @media screen and (max-width: 992px) {
+            display: block;
+        }
+    }
+}

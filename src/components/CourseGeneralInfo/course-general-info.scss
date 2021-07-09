@@ -6,6 +6,38 @@
     align-items: center;
     position: relative;
 
+    .maximize {
+        position: absolute;
+        top: 2%;
+        right: 100%;
+        z-index: 0;
+        background-color: red;
+        border-radius: 10px 0 0 10px;
+        background-color: $light-gray;
+        opacity: 1;
+        visibility: visible;
+        transition: all 2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        
+        .btn-maximize {
+            padding: 1.25rem 2.5rem 1.25rem 1.5rem;
+            border: 0;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: transparent;
+            outline: none;
+
+            .icon {
+                color: $icon-color;
+                font-size: 2rem;
+            }
+        }
+    }
+
+    .maximize.hide {
+        visibility: hidden;
+        opacity: 0;
+    }
+
     .info {
         width: calc(100% - 3rem);
         padding: 1.5rem 0 1.5rem 1rem;
@@ -46,14 +78,5 @@
                 background-color: $light-gray;
             }
         }
-    }
-
-    .lesson-processing {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 51%;
-        background-color: $light-green;
     }
 }

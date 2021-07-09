@@ -1,0 +1,102 @@
+@import "../../../assets/scss/variables";
+
+.header-nav {
+    margin: 0 4rem;
+
+    .nav-list {
+        display: flex;
+        justify-content: flex-start;
+        height: 100%;
+
+        .item {
+            height: 100%;
+
+            .link {
+                display: inline-block;
+                height: 100%;
+                line-height: 5rem;
+                padding: 0 2rem;
+                text-transform: uppercase;
+                font-size: 1.3rem;
+                font-weight: bolder;
+                color: $light-gray;
+            }
+        }
+
+        .item.close-nav {
+            display: none;
+        }
+
+        .item.active {
+
+            .link {
+                color: #fff;
+                background-color: #222529;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .header-nav {
+        margin: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+        background-color: #fff;
+        transition: all 0.15s ease;
+        transform: translateX(100%);
+
+        .nav-list {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+
+            .item {
+                height: auto;
+
+                .link {
+                    display: inline-block;
+                    width: 100%;
+                    height: auto;
+                    text-transform: uppercase;
+                    font-size: 1.3rem;
+                    font-weight: bolder;
+                    color: $gray;
+                }
+            }
+
+            .item.close-nav {
+                display: block;
+
+                .link {
+                    text-align: center;
+
+                    .icon {
+                        font-size: 1.8rem;
+                        transition: all 0.15s ease;
+                    }
+
+                    &:hover {
+                        color: $gray-dark;
+                    }
+                }
+            }
+
+            .item.active {
+
+                .link {
+                    color: #fff;
+                    background-color: #222529;
+                }
+            }
+        }
+    }
+
+    .header-nav.active {
+        transform: translateX(0);
+    }
+}

@@ -6,6 +6,14 @@ export default function CoursesList() {
   return (
     <div className="courses-list">
       <CoursesItem />
+      <CoursesItem />
+      <CoursesItem />
+      <CoursesItem />
+      <CoursesItem />
+      <CoursesItem />
+      <CoursesItem />
+      <CoursesItem />
+      <CoursesItem />
     </div>
   );
 }
