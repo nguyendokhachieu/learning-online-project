@@ -1,0 +1,12 @@
+@import "../../assets/scss/variables";
+
+.courses-section {
+    
+    .container {
+        width: calc(1024px + 3rem);
+        max-width: 100%;
+        margin: 0 auto;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}

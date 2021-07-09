@@ -1,5 +1,21 @@
 @import "./variables";
 
+body {
+    &::-webkit-scrollbar {
+        width: 0.75rem;
+    }
+       
+    &::-webkit-scrollbar-track {
+        border-radius: 5px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: #999;
+        outline: none;
+        border-radius: 5px;
+    }
+}
+
 .main {
     margin-top: 5rem;
 }

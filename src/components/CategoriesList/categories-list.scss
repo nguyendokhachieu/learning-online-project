@@ -1,0 +1,65 @@
+@import "../../assets/scss/variables";
+
+.categories-section {
+    padding: 2rem 0 5rem 0;
+
+    .categories-list {
+        display: flex;
+        justify-content: center;
+        overflow: auto;
+
+        .item {
+
+            .text {
+                display: inline-block;
+                padding: 0.5rem 1.5rem;
+                font-size: 1.5rem;
+                border-radius: 10px;
+                white-space: nowrap;
+                cursor: pointer;
+                transition: all 0.25s ease;
+
+                &:hover {
+                    background-color: $light-pink;
+                }
+
+                &:active {
+                    box-shadow: 0 0 3px 0 $pink;
+                }
+            }
+            
+            &:not(:last-child) {
+                margin-right: 1.5rem;
+            }
+        }
+        
+        .item.active {
+            
+            .text {
+                color: #fff;
+                background-color: $pink;
+            }
+        }
+
+        &::-webkit-scrollbar {
+            height: 0.5rem;
+        }
+           
+        &::-webkit-scrollbar-track {
+            border-radius: 5px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            outline: none;
+            border-radius: 5px;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        &:hover::-webkit-scrollbar-thumb {
+            opacity: 1;
+            visibility: visible;
+        }
+    }   
+}
