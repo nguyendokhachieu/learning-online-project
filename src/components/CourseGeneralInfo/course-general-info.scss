@@ -1,0 +1,59 @@
+@import "../../assets/scss/variables";
+
+.course-general-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    .info {
+        width: calc(100% - 3rem);
+        padding: 1.5rem 0 1.5rem 1rem;
+
+        .course-name {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            word-break: break-word;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .course-process {
+            padding-top: 0.5rem;
+            font-size: 1.25rem;
+            line-height: 1.25;
+        }
+    }
+
+    .minimize {
+        width: 3rem;
+        text-align: center;
+
+        .btn-minimize {
+            border: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+
+            .icon {
+                color: $icon-color;
+                font-size: 1.5rem;
+            }
+
+            &:hover {
+                background-color: $light-gray;
+            }
+        }
+    }
+
+    .lesson-processing {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 51%;
+        background-color: $light-green;
+    }
+}

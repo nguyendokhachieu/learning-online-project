@@ -1,0 +1,49 @@
+.detail-lesson-section {
+    height: calc(100vh - 5rem);
+    display: flex;
+    justify-content: space-between;
+
+    .video {
+        width: calc(100% - 30rem);
+
+        .content-scrollable {
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+
+            .container {
+                width: 90%;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+                margin: 0 auto;
+            }
+
+        }
+
+        .content-scrollable::-webkit-scrollbar {
+            width: 0.75rem;
+        }
+           
+        .content-scrollable::-webkit-scrollbar-track {
+            border-radius: 5px;
+        }
+        
+        .content-scrollable::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        @media screen and (max-width: 991px) {
+            width: 100%;
+        }
+    }
+
+    .lessons-nav {
+        width: 30rem;
+
+        @media screen and (max-width: 991px) {
+            display: none;
+        }
+    }
+}
