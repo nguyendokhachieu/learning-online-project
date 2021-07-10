@@ -1,4 +1,4 @@
-@import "../../../../assets/scss/variables";
+@import "../../../../../assets/scss/variables";
 
 .notifications-section-dropdown-box {
     position: absolute;
@@ -9,9 +9,8 @@
     border-radius: 10px;
     box-shadow: 0 0 5px 0 $light-gray;
     background-color: #fff;
-    transition: all 0.15s ease;
+    transition: all 0.15s cubic-bezier(0.895, 0.03, 0.685, 0.22);
     transform: scale(0);
-    will-change: right;
     transform-origin: 100% 0;
 
     .notifications-heading {

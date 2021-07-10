@@ -1,0 +1,45 @@
+@import "../../assets/scss/variables";
+
+.breadcrumb {
+    padding: 3.5rem 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .item {
+        margin-right: 1rem;
+
+        .link {
+            color: $pink;
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 0;
+                height: 0.5px;
+                background-color: $pink;
+                transition: all 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+            }
+
+            &:hover::after {
+                width: 100%;
+            }
+        }
+
+        .icon {
+            color: $gray;
+            font-size: 1.3rem;
+        }
+    }
+
+    .item.disabled {
+        .link {
+            color: $gray;
+        }
+    }
+}

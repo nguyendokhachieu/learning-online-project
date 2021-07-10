@@ -1,0 +1,47 @@
+@import "../../assets/scss/variables";
+
+.course-name {
+    padding-bottom: 2rem;
+
+    .title {
+        font-size: 3.19rem;
+        word-break: break-word;
+        line-height: 1.45;
+        font-weight: bolder;
+    }
+}
+
+.heading {
+    padding-bottom: 2rem;
+
+    .title {
+        font-size: 1.9rem;
+    }
+}
+
+.paragraph {
+    padding-bottom: 3rem;
+
+    .text {
+        font-size: 1.45rem;
+        line-height: 1.5;
+    }
+
+    .text.has-icon {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        .icon {
+            color: $pink;
+            margin-right: 1rem;
+        }
+    }
+}
+
+.course-chapters-heading {
+    position: sticky;
+    top: 5rem;
+    padding-top: 2rem;
+    background-color: #fff;
+}

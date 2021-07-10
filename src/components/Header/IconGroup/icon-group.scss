@@ -6,9 +6,10 @@
     justify-content: flex-end;
 
     .icon-wrap {
-
+        transition: all 0.15s ease;
+        
         .link {
-            display: inline-block;
+            cursor: pointer;
             height: 100%;
             padding: 0 1.5rem;
             display: flex;
@@ -26,6 +27,11 @@
                 object-fit: cover;
             }
         }
+        
+        &:hover {
+            background-color: #222529;
+        }
+
     }
 
     .icon-wrap.user-avatar {
@@ -70,6 +76,11 @@
 
     .icon-wrap.hamburger {
         display: none;
+        transition: all 0.15s ease;
+
+        &:hover {
+            background-color: #222529;
+        }
 
         @media screen and (max-width: 992px) {
             display: block;

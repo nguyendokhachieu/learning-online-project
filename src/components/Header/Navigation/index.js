@@ -1,13 +1,21 @@
 import "./navigation.scss";
 
-export default function Navigation() {
+export default function Navigation({
+  showSideNav = false,
+  onHideSideNav = function() {},
+}) 
+{
   return (
-    <div className="header-nav">
+    <div className={ showSideNav ? "header-nav active" : "header-nav" }>
       <ul className="nav-list">
-        <li className="item close-nav" title="Đóng tất cả các tab">
-          <a href="/" className="link">
+        <li 
+          className="item close-nav" 
+          title="Đóng tất cả các tab"
+          onClick={ () => onHideSideNav(false) }
+        >
+          <div className="link">
             <i className="fas fa-times icon"></i>
-          </a>
+          </div>
         </li>
         <li className="item active">
           <a href="/" className="link">

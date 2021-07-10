@@ -1,0 +1,78 @@
+@import "../../assets/scss/variables";
+
+.course-card {
+    margin-top: 3.5rem;
+    background-color: $light;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 #eee;
+    overflow: hidden;
+    position: sticky;
+    top: 8.5rem;
+
+    .course-thumbnail {
+        height: 20rem;
+
+        .img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .course-price {
+        text-align: center;
+        padding: 3rem;
+
+        .text {
+            font-size: 2.5rem;
+            color: $pink;
+            font-weight: bolder;
+        }
+    }
+
+    .course-register {
+        text-align: center;
+
+        .btn-register {
+            border: 1px solid $pink;
+            background-color: $pink;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        @media screen and (max-width: 992px) {
+            position: fixed;
+            z-index: 2;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 6rem;
+            background-color: red;
+            display: flex;
+
+            .btn-register {
+                flex: 1;
+            }
+        }
+    }
+
+    .course-shortdesc {
+        padding: 2rem 5rem;
+
+        .item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 0;
+
+            .icon {
+                font-size: 1.8rem;
+                margin-right: 1rem;
+                color: $icon-color;
+            }
+
+            .text {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}

@@ -1,8 +1,11 @@
 import "./user-section.scss";
 
-export default function UserSection() {
+export default function UserSection({
+  showUserBox = false,
+}) 
+{
   return (
-    <section className="user-section-dropdown-box">
+    <section className={ showUserBox ? "user-section-dropdown-box active" : "user-section-dropdown-box" }>
       <div className="user-heading">
         <h3 className="title">Tài khoản của bạn</h3>
       </div>

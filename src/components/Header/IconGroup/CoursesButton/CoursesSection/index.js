@@ -1,8 +1,11 @@
 import "./courses-section.scss";
 
-export default function CoursesSection() {
+export default function CoursesSection({
+  showCoursesBox = false,
+}) 
+{
   return (
-    <section className="courses-section-dropdown-box">
+    <section className={ showCoursesBox ? "courses-section-dropdown-box active" : "courses-section-dropdown-box" }>
       <div className="courses-heading">
         <h3 className="title">Khóa học của bạn</h3>
         <div className="options">Xem tất cả</div>

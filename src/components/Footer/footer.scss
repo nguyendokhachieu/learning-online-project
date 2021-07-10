@@ -33,12 +33,11 @@
 
                 .link {
                     color: $light;
-                    
+                    display: inline-block;
+                    margin-left: 0.5rem;
+
                     img {
-                        margin-left: 1rem;
                         width: 8rem;
-                        position: relative;
-                        top: 2px;
                     }
                 }
             }

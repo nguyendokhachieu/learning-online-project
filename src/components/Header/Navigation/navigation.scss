@@ -47,7 +47,9 @@
         right: 0;
         z-index: 2;
         background-color: #fff;
-        transition: all 0.15s ease;
+        transition: all 0.2s cubic-bezier(1, 0, 0, 1);
+        opacity: 0;
+        visibility: hidden;
         transform: translateX(100%);
 
         .nav-list {
@@ -66,11 +68,13 @@
                     font-size: 1.3rem;
                     font-weight: bolder;
                     color: $gray;
+                    text-align: center;
                 }
             }
 
             .item.close-nav {
                 display: block;
+                cursor: pointer;
 
                 .link {
                     text-align: center;
@@ -98,5 +102,7 @@
 
     .header-nav.active {
         transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
     }
 }

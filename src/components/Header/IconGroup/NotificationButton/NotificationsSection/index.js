@@ -1,8 +1,17 @@
 import "./notifications-section.scss";
 
-export default function NotificationsSection() {
+export default function NotificationsSection({
+  showNotificationBox = false,
+}) 
+{
   return (
-    <section className="notifications-section-dropdown-box">
+    <section 
+      className={ 
+        showNotificationBox 
+          ? "notifications-section-dropdown-box active" 
+          : "notifications-section-dropdown-box" 
+      }
+    >
       <div className="notifications-heading">
         <h3 className="title">Thông báo</h3>
         <div className="options">Đánh dấu tất cả là đã đọc</div>
