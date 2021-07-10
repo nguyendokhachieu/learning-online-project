@@ -16,7 +16,7 @@ export default function CourseGeneralInfo({
       </div>
       <div className="info">
         <h2
-          className="course-name"
+          className="course-name-in-detail-page"
           title="Khóa học React js cơ bản cho người mới"
         >
           Khóa học React js cơ bản cho người mới

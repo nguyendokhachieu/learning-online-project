@@ -1,0 +1,41 @@
+@import "../../../assets/scss/variables";
+
+.nav-options {
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 1px solid $light-gray;
+
+    .item {
+
+        .text {
+            display: inline-block;
+            padding: 1rem 1.5rem;
+            font-size: 1.7rem;
+            cursor: pointer;
+
+            &:active {
+                background-color: $light-gray;
+            }
+        }
+    }
+
+    .item.active {
+        border-bottom: 2px solid $dark;
+
+        .text {
+            cursor: default;
+
+            &:active {
+                background-color: transparent;
+            }
+        }
+    }
+
+    .item#chaptersList {
+        display: none;
+
+        @media screen and (max-width: 991px) {
+            display: block;
+        }
+    }
+}

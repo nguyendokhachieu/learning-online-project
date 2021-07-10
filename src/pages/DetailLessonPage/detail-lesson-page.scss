@@ -51,11 +51,14 @@
 }
 
 .detail-lesson-section.hide-side-nav {
+    overflow-x: hidden;
+    
     .video {
         width: 100%;
     }
 
     .lessons-nav {
         width: 0;
+        padding: 0;
     }
 }
