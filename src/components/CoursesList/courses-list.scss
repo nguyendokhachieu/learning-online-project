@@ -100,7 +100,8 @@
             }
 
             &:hover {
-                box-shadow: 0 0 5px 0 $light-gray;
+                transform: translateY(-5px);
+                box-shadow: 0 0 10px 0 $light-pink;
             }
         }
     }
@@ -117,5 +118,33 @@
         .course-item {
             width: calc(100% - 1.5rem);
         }
+    }
+}
+
+.load-more-courses {
+    text-align: center;
+    padding: 2rem;
+
+    .btn-loadmore {
+        background-color: #fff;
+        color: $pink;
+        border: 1px solid $pink;
+        border-radius: 10px;
+        transition: all 0.15s ease-in-out;
+        
+        &:hover {
+            background-color: $pink;
+            color: #fff;
+        }
+
+        .icon {
+            margin-right: 1rem;
+        }
+    }
+
+    .btn-loadmore.disabled {
+        pointer-events: none;
+        color: $light-gray;
+        border-color: $light-gray;
     }
 }

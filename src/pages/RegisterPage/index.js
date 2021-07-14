@@ -1,15 +1,28 @@
 import "./register-page.scss";
 
+import { useScrolledPercentage } from "../../hooks/useScrolledPercentage";
+
 export default function RegisterPage() {
+    const { scrolledPercentY } = useScrolledPercentage();
+
+    const isLogoMinimized = scrolledPercentY > 17;
 
     return (
         <section className="register-section">
-            <div className="logo-fluid">
+            <div className={ isLogoMinimized ? "logo-fluid minimize" : "logo-fluid" }>
                 <h1 className="title">
                     <a href="/" className="link">
                     Online Learning
                     </a>
                 </h1>
+                <div className="logo-float">
+                    <h2 className="title">
+                        <a href="/" className="link-float">
+                        Online Learning
+                        </a>
+                        <span>Đăng ký tài khoản mới</span>
+                    </h2>
+                </div>
             </div>
             <div className="container">
                 <div className="centered-box">

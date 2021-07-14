@@ -1,41 +1,53 @@
 import "./course-item.scss";
 
-export default function CoursesItem() {
+import { Link } from "react-router-dom";
+
+export default function CoursesItem({
+  course = null,
+}) 
+{
+  if (!course) return null;
+
   return (
     <section className="course-item">
       <div className="course-item-inner">
         <div className="course-thumbnail">
-          <a href="/">
+          <Link to={ `/course/${ course.slug }` }>
             <img
-              src="https://cdn.slidesharecdn.com/ss_thumbnails/reactjssulokramani-160805123618-thumbnail-4.jpg?cb=1470400672"
+              src={ `https://img.youtube.com/vi/${ course.thumbnail_id }/hqdefault.jpg` }
               className="img"
-              alt="course-thumbnail"
+              alt={ course.name }
             />
-          </a>
+          </Link>
         </div>
         <div className="course-item-body">
           <div className="course-item-heading">
-            <div className="course-name">
+            <div className="course-name-title">
               <h2>
-                <a href="/" title="Reactjs từ cơ ">
-                  Reactjs từ cơ bản đến nâng cao cho cơ bản đến nâng cao cho
-                  người mới cho người mới
-                </a>
+                <Link 
+                  to={ `/course/${ course.slug }` } 
+                  title={ course.name }
+                >
+                  { course.name }
+                </Link>
               </h2>
             </div>
             <p className="course-desc">
-              Xây dựng web trong thực tế với ReactJS với cách chia sẻ chi tiết,
-              tận tâm, dễ hiểu và chất giọng giàu sức sống của người chia sẻ Xây
-              dựng web trong thực tế với ReactJS với cách chia sẻ chi tiết, tận
-              tâm, dễ hiểu và chất giọng giàu sức sống của người chia sẻ Xây
-              dựng web trong thực tế với ReactJS Xây dựng web trong thực tế với
-              ReactJS
+              { course.short_desc }
             </p>
           </div>
-          <div className="course-info">
+          <div className="course-info-bottom">
             <div className="participants-count">
               <i className="fas fa-users icon"></i>
-              <span className="text">12.345 người tham gia</span>
+              <span className="text">{ course.participants_count } người tham gia</span>
+            </div>
+            <div className="course-item-pop-up">
+              <Link 
+                to={ `/course/${ course.slug }` } 
+                className="btn btn-enroll-to"
+              >
+                  XEM CHI TIẾT
+              </Link>
             </div>
           </div>
         </div>

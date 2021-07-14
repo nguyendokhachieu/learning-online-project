@@ -1,15 +1,29 @@
 import "./login-page.scss";
 
+import { useScrolledPercentage } from "../../hooks/useScrolledPercentage";
+
 export default function LoginPage() {
+
+    const { scrolledPercentY } = useScrolledPercentage();
+
+    const isLogoMinimized = scrolledPercentY > 12;
 
     return (
         <section className="login-section">
-            <div className="logo-fluid">
+            <div className={ isLogoMinimized ? "logo-fluid minimize" : "logo-fluid" }>
                 <h1 className="title">
                     <a href="/" className="link">
                     Online Learning
                     </a>
                 </h1>
+                <div className="logo-float">
+                    <h2 className="title">
+                        <a href="/" className="link-float">
+                        Online Learning
+                        </a>
+                        <span>Đăng nhập</span>
+                    </h2>
+                </div>
             </div>
             <div className="container">
                 <div className="centered-box">

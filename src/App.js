@@ -9,6 +9,7 @@ import CoursesPage from "./pages/CoursesPage";
 import CourseIntroPage from "./pages/CourseIntroPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ModalLoadingFirst from "./pages/ModalLoadingFirst";
 
 function App() {
   const location = useLocation();
@@ -17,6 +18,7 @@ function App() {
   const isHideHeader = ['/login', '/register'].includes(location.pathname || '');
 
   return (
+    <>
     <div className="fullscreen">
        {
         !isHideHeader 
@@ -25,10 +27,10 @@ function App() {
       }
       <section className="main">
         <Switch>
-          <Route path="/learn">
+          <Route path="/learn/:slug">
             <DetailLessonPage />
           </Route>
-          <Route path="/course">
+          <Route path="/course/:slug">
             <CourseIntroPage />
           </Route>
           <Route path="/courses">
@@ -54,6 +56,8 @@ function App() {
           : null
       }
     </div>
+    {/* <ModalLoadingFirst /> */}
+    </>
   );
 }
 
