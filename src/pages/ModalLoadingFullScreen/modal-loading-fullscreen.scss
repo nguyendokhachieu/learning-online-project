@@ -1,13 +1,16 @@
-.modal-loading-first {
+.modal-loading-fullscreen {
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     z-index: 11;
-    background-color: rgba(0, 0, 0, 0.929);
+    background-color: rgba(0, 0, 0, 0.959);
+    transition: all 0.15s ease-in-out;
+    opacity: 1;
+    visibility: visible;
     
-    .inner-modal-loading-first {
+    .inner-modal-loading-fullscreen {
         width: 4rem;
         height: 4rem;
         position: absolute;
@@ -20,4 +23,9 @@
             height: 100%;
         }
     }
+}
+
+.modal-loading-fullscreen.hidden {
+    opacity: 0;
+    visibility: hidden;
 }

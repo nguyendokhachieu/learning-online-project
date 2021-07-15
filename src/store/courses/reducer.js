@@ -1,4 +1,7 @@
-import { ACT_FETCH_LIST_COURSES } from "./actions";
+import { 
+    ACT_FETCH_LIST_COURSES,
+    ACT_FETCH_COURSE_IN_DETAIL,
+} from "./actions";
 
 const initState = {
     courses: {
@@ -6,11 +9,19 @@ const initState = {
         page: 1,
         perPage: 10,
         hasMore: true,
-    }
+    },
+
+    courseDetail: null,
 };
 
 export const courseReducer = (state = initState, action) => {
     switch (action.type) {
+        case ACT_FETCH_COURSE_IN_DETAIL:
+            return {
+                ...state,
+                courseDetail: action.payload.detail
+            }
+
         case ACT_FETCH_LIST_COURSES:
             return {
                 ...state,

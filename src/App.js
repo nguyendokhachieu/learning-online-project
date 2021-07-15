@@ -1,5 +1,6 @@
 import "./assets/scss/app.scss";
 
+import { useSelector } from "react-redux";
 import { Switch, Route, useLocation } from "react-router-dom";
 
 import Header from "./components/Header";
@@ -9,10 +10,11 @@ import CoursesPage from "./pages/CoursesPage";
 import CourseIntroPage from "./pages/CourseIntroPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import ModalLoadingFirst from "./pages/ModalLoadingFirst";
+import ModalLoadingFullScreen from "./pages/ModalLoadingFullScreen";
 
 function App() {
   const location = useLocation();
+  const { modalLoadingFullScreen } = useSelector(state => state.modals);
 
   const isHideFooter = ['/learn', '/login', '/register'].includes(location.pathname || '');
   const isHideHeader = ['/login', '/register'].includes(location.pathname || '');
@@ -42,7 +44,7 @@ function App() {
           <Route path="/register">
             <RegisterPage />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <CoursesPage />
           </Route>
           <Route>
@@ -56,7 +58,7 @@ function App() {
           : null
       }
     </div>
-    {/* <ModalLoadingFirst /> */}
+    <ModalLoadingFullScreen show={ modalLoadingFullScreen.show } />
     </>
   );
 }

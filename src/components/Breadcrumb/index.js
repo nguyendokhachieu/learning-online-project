@@ -1,20 +1,27 @@
 import "./breadcrumb.scss";
 
-export default function Breadcrumb() {
+import { Link } from "react-router-dom";
+
+export default function Breadcrumb({
+  courseDetail = null,
+}) 
+{
+  if (!courseDetail) return null;
+  
   return (
     <div className="breadcrumb">
       <div className="item">
-        <a href="/" className="link">
+        <Link to="/courses" className="link">
           Khóa học
-        </a>
+        </Link>
       </div>
       <div className="item">
         <i className="fas fa-chevron-right icon"></i>
       </div>
       <div className="item">
-        <a href="/" className="link">
-          ReactJS cơ bản
-        </a>
+        <span className="link">
+          { courseDetail.name }
+        </span>
       </div>
     </div>
   );

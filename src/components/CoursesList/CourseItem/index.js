@@ -1,35 +1,42 @@
 import "./course-item.scss";
 
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { actShowLoadingFullscreen } from "../../../store/modals/actions";
 
 export default function CoursesItem({
   course = null,
 }) 
 {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  function handleClick() {
+    dispatch(actShowLoadingFullscreen()); 
+    setTimeout(() => history.push(`/course/${ course.slug }`), 500);
+  }
+
   if (!course) return null;
 
   return (
     <section className="course-item">
       <div className="course-item-inner">
         <div className="course-thumbnail">
-          <Link to={ `/course/${ course.slug }` }>
+          <span onClick={ handleClick } title={ course.name }>
             <img
               src={ `https://img.youtube.com/vi/${ course.thumbnail_id }/hqdefault.jpg` }
               className="img"
               alt={ course.name }
             />
-          </Link>
+          </span>
         </div>
         <div className="course-item-body">
           <div className="course-item-heading">
             <div className="course-name-title">
               <h2>
-                <Link 
-                  to={ `/course/${ course.slug }` } 
-                  title={ course.name }
-                >
+                <span onClick={ handleClick } title={ course.name } >
                   { course.name }
-                </Link>
+                </span>
               </h2>
             </div>
             <p className="course-desc">
@@ -42,12 +49,12 @@ export default function CoursesItem({
               <span className="text">{ course.participants_count } người tham gia</span>
             </div>
             <div className="course-item-pop-up">
-              <Link 
-                to={ `/course/${ course.slug }` } 
+              <button 
+                onClick={ handleClick }
                 className="btn btn-enroll-to"
               >
                   XEM CHI TIẾT
-              </Link>
+              </button>
             </div>
           </div>
         </div>

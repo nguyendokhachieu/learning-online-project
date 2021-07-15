@@ -1,8 +1,11 @@
-export default function Lesson() {
+export default function Lesson({
+  lesson
+}) 
+{
   return (
-    <li className="lesson">
+    <li className="lesson" title={ lesson.name }>
       <i className="fas fa-play icon"></i>
-      <span className="text">1. Mô hình Client-Server</span>
+      <span className="text">{ lesson.name }</span>
     </li>
   );
 }
