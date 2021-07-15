@@ -1,36 +1,45 @@
 import "./course-intro-page.scss";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 
 import { actFetchCourseInDetailAsync } from "../../store/courses/actions";
 import { actHideLoadingFullscreen, actShowLoadingFullscreen } from "../../store/modals/actions";
 import { useScrollToTop } from "../../hooks/useScrollToTop";
+import { useConstructor } from "../../hooks/useContructor";
 
 import Breadcrumb from "../../components/Breadcrumb";
 import CourseIntroduction from "../../components/CourseIntroduction";
 import CourseChapterAccordion from "../../components/CourseChapterAccordion";
 import CourseCard from "../../components/CourseCard";
+import NotFound from "../../components/NotFound";
 
 export default function CourseIntroPage() {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
 
+  const [loading, setLoading] = useState(false);
   const { scrollToTop } = useScrollToTop();
   const { courseDetail } = useSelector(state => state.courses);
+
+  useConstructor(() => {
+    if (history.action === 'POP') dispatch(actShowLoadingFullscreen());
+  });
 
   let courseId = location.pathname.split('.').length === 2 ? location.pathname.split('.')[1] : null;
   courseId = isNaN(courseId) ? null : Number(courseId);
   courseId = courseId < 1 ? null : courseId;
 
   useEffect(() => {
-    if (history.action === 'POP') dispatch(actShowLoadingFullscreen());
+    if (loading) return;
+    setLoading(true);
 
     dispatch(actFetchCourseInDetailAsync({
       courseId
     })).finally(() => {
+      setLoading(false);
       if (history.action === 'POP') {
         setTimeout(() => {
           dispatch(actHideLoadingFullscreen());
@@ -43,12 +52,9 @@ export default function CourseIntroPage() {
     scrollToTop();
   }, [courseId]);
 
-  if (!courseId) {
-    history.push(`/not-found`);
-    return null;
-  }
+  if (loading) return null;
 
-  if (!courseDetail) return null;
+  if (!courseId || !courseDetail) return <NotFound />;
 
   return (
     <section className="courses-introduction-section">

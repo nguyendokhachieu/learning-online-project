@@ -10,6 +10,7 @@ import CoursesPage from "./pages/CoursesPage";
 import CourseIntroPage from "./pages/CourseIntroPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import ModalLoadingFullScreen from "./pages/ModalLoadingFullScreen";
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
             <CoursesPage />
           </Route>
           <Route>
-            Not Found
+            <NotFoundPage />
           </Route>
         </Switch>
       </section>
