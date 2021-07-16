@@ -31,4 +31,22 @@ export const UserService = {
             }
         })
     },
+
+    login({
+        email,
+        password,
+        facebookID,
+    }) 
+    {
+        return api.call().post('/users/login', null, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Basic ' + window.btoa(unescape(encodeURIComponent(email)).
+                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
+                concat(unescape(encodeURIComponent(password))).
+                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
+                concat(unescape(encodeURIComponent(facebookID)))),
+            }
+        })
+    },
 }

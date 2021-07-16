@@ -1,6 +1,6 @@
 import "./user-section.scss";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actShowLogoutConfirmationModal } from "../../../../../store/modals/actions";
 
 export default function UserSection({
@@ -8,11 +8,12 @@ export default function UserSection({
 }) 
 {
   const dispatch = useDispatch();
+  const { user } = useSelector(state => state.users.currentUser);
 
   return (
     <section className={ showUserBox ? "user-section-dropdown-box active" : "user-section-dropdown-box" }>
-      <div className="user-heading">
-        <h3 className="title">Tài khoản của bạn</h3>
+      <div className="user-heading" title={ user && user.name }>
+        <h3 className="title">{ user && user.name }</h3>
       </div>
       <div className="user-list">
         <div className="user-item">

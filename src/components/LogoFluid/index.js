@@ -1,5 +1,6 @@
 import "./logo-fluid.scss";
 
+import { Link } from "react-router-dom";
 import { useScrolledPercentage } from "../../hooks/useScrolledPercentage";
 
 export default function LogoFluid({
@@ -14,9 +15,9 @@ export default function LogoFluid({
   return (
     <div className={isLogoMinimized ? "logo-fluid minimize" : "logo-fluid"}>
       <h1 className="title">
-        <a href="/" className="link">
+        <Link to="/" className="link">
           Online Learning
-        </a>
+        </Link>
       </h1>
       <div className="logo-float">
         <h2 className="title">

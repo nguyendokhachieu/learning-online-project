@@ -6,6 +6,7 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
 import FacebookLogin from 'react-facebook-login';
+import { useScrollToTop } from "../../hooks/useScrollToTop";
 
 import { actRegisterAsync } from "../../store/users/actions";
 import { actShowNotificationCard } from "../../store/modals/actions";
@@ -22,6 +23,7 @@ export default function RegisterPage() {
     const passwordRef = useRef();
     const dispatch = useDispatch();
     const history = useHistory();
+    const { scrollToTop } = useScrollToTop();
 
     const { accessToken } = useSelector(state => state.users.currentUser);
 
@@ -107,6 +109,10 @@ export default function RegisterPage() {
     useEffect(() => {
         facebookID !== 'null' && register(null);
     }, [facebookID]);
+
+    useEffect(() => {
+        scrollToTop();
+    }, [])
 
     if (accessToken) {
         history.push('/');

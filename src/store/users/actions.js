@@ -2,6 +2,61 @@ import { UserService } from "../../services/user";
 
 export const ACT_REGISTER = 'ACT_REGISTER';
 export const ACT_AUTHORIZATION = 'ACT_AUTHORIZATION';
+export const ACT_LOGIN = 'ACT_LOGIN';
+
+export const actLoginAsync = ({
+    email = null,
+    password = null,
+    facebookID,
+}) => 
+{
+    return async dispatch => {
+        if (!email) return;
+
+        try {
+            const response = await UserService.login({
+                email,
+                password,
+                facebookID,
+            });
+
+            if (response.data.ok) {
+                dispatch(actLogin({
+                    accessToken: response.data.data.access_token || null,
+                    user: response.data.data.user || null
+                }))
+
+                return {
+                    ok: true,
+                }
+            }
+
+            return {
+                ok: false,
+                message: response.data.message,
+            }
+        } catch (error) {
+            return {
+                ok: false,
+                message: 'Lỗi mạng'
+            }
+        }
+    }
+}
+
+const actLogin = ({
+    accessToken, 
+    user,
+}) => 
+{
+    return {
+        type: ACT_LOGIN,
+        payload: {
+            accessToken,
+            user,
+        }
+    }
+}
 
 export const actAuthorizationAsync = () => {
     return async dispatch => {
