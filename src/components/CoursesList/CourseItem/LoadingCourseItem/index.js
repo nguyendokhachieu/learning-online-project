@@ -8,7 +8,7 @@ export default function LoadingCoursesItem({
 
   for (let i = 0; i < noOfItems; i++) {
     arrayRendered.push(
-      <section className="loading-course-item">
+      <section className="loading-course-item" key={ i }>
         <div className="course-item-inner">
           <div className="course-thumbnail"></div>
           <div className="course-item-body">

@@ -5,19 +5,30 @@ import SearchButton from "./SearchButton";
 import NotificationButton from "./NotificationButton";
 import CoursesButton from "./CoursesButton";
 import UserButton from "./UserButton";
+import { useSelector } from "react-redux";
 
 export default function IconGroup({
   showSideNav = function() {},
   onShowSearchBar = function() {},
 }) 
 {
+  const { accessToken } = useSelector(state => state.users.currentUser);
+
   return (
     <div className="icon-group">
-      <LoginButton />
+      {
+        !accessToken && <LoginButton />
+      }
       <SearchButton onShowSearchBar={ () => onShowSearchBar() } />
-      <NotificationButton />
-      <CoursesButton />
-      <UserButton />
+      {
+        accessToken && <NotificationButton />
+      }
+      {
+        accessToken && <CoursesButton />
+      }
+      {
+        accessToken && <UserButton />
+      }
       <div 
         className="icon-wrap hamburger"
         onClick={ () => showSideNav() }

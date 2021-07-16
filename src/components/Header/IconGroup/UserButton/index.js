@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 import UserSection from "./UserSection";
 
 export default function IconGroup() {
   const userBoxRef = useRef();
   const [showUserBox, setShowUserBox] = useState(false);
+  const { avatar } = useSelector(state => state.users.currentUser.user);
 
   useEffect(() => {
     function onClickHandler(e) {
@@ -31,7 +33,7 @@ export default function IconGroup() {
         onClick={ () => setShowUserBox(!showUserBox) }
     >
         <img
-          src="https://pdp.edu.vn/wp-content/uploads/2021/05/hinh-anh-avatar-de-thuong.jpg"
+          src={ avatar && avatar !== 'null' ? avatar : '/assets/images/default-avatar.png' }
           alt="avatar"
           className="img"
         />

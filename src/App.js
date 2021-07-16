@@ -1,6 +1,6 @@
 import "./assets/scss/app.scss";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route, useLocation } from "react-router-dom";
 
 import Header from "./components/Header";
@@ -11,14 +11,33 @@ import CourseIntroPage from "./pages/CourseIntroPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import NotFoundPage from "./pages/NotFoundPage";
+
 import ModalLoadingFullScreen from "./pages/ModalLoadingFullScreen";
+import ModalLogoutConfirmation from "./components/Header/IconGroup/UserButton/UserSection/ModalLogoutConfirmation";
+
+import NotificationCard from "./components/NotificationCard";
+import { useEffect, useState } from "react";
+import { actAuthorizationAsync } from "./store/users/actions";
 
 function App() {
   const location = useLocation();
-  const { modalLoadingFullScreen } = useSelector(state => state.modals);
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const { 
+    modalLoadingFullScreen, 
+    notificationCard,
+    logoutConfirmationModal,
+  } = useSelector(state => state.modals);
 
   const isHideFooter = ['/learn', '/login', '/register'].includes(location.pathname || '');
   const isHideHeader = ['/login', '/register'].includes(location.pathname || '');
+
+  useEffect(() => {
+    if (loading) return;
+
+    setLoading(true);
+    dispatch(actAuthorizationAsync()).finally(() => setLoading(false));
+  }, [dispatch]);
 
   return (
     <>
@@ -30,7 +49,7 @@ function App() {
       }
       <section className="main">
         <Switch>
-          <Route path="/learn/:slug">
+          <Route path="/learn/:lessonId">
             <DetailLessonPage />
           </Route>
           <Route path="/course/:slug">
@@ -60,6 +79,12 @@ function App() {
       }
     </div>
     <ModalLoadingFullScreen show={ modalLoadingFullScreen.show } />
+    <ModalLogoutConfirmation show={ logoutConfirmationModal.show } />
+    <NotificationCard 
+      show={ notificationCard.show } 
+      content={ notificationCard.content }
+      link={ notificationCard.link }
+    />
     </>
   );
 }
