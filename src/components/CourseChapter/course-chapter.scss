@@ -93,9 +93,10 @@
                             .lesson-name {
                                 font-size: 1.4rem;
                                 font-weight: 400;
-                                text-overflow: ellipsis;
-                                white-space: nowrap;
-                                overflow: hidden;
+                                line-height: 1.333;
+                                // text-overflow: ellipsis;
+                                // white-space: nowrap;
+                                // overflow: hidden;
                             }
 
                             .lesson-time {

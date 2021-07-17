@@ -1,15 +1,18 @@
 export default function ChapterName({
   onToggleDropdown = function() {},
+  chapter = null,
 }) 
 {
+  if (!chapter) return null;
+
   return (
     <div 
       className="dropdown-header"
       onClick={ () => onToggleDropdown() }
     >
       <div className="left">
-        <h5 className="chapter-title">Phần 1. ABC</h5>
-        <div className="chapter-count">10/22</div>
+        <h5 className="chapter-title">{ chapter.name }</h5>
+        <div className="chapter-count">{ chapter.lessons_list.length || 1 } bài học</div>
       </div>
       <div className="right">
         <button className="btn-drop">

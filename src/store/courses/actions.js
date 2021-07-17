@@ -2,6 +2,102 @@ import { CourseService } from "../../services/course";
 
 export const ACT_FETCH_LIST_COURSES = 'ACT_FETCH_LIST_COURSES';
 export const ACT_FETCH_COURSE_IN_DETAIL = 'ACT_FETCH_COURSE_IN_DETAIL';
+export const ACT_REGISTER_NEW_COURSE = 'ACT_REGISTER_NEW_COURSE';
+export const ACT_FETCH_USER_REGISTERED_COURSE = 'ACT_FETCH_USER_REGISTERED_COURSE';
+
+export const actFetchUserRegisteredCourseByLessonIdAsync = ({
+    lessonId = null,
+}) => 
+{
+    return async dispatch => {
+        if (!lessonId) return;
+
+        try {
+            const response = await CourseService.getUserDetailRegisteredCourse_ByLessonId(lessonId);
+
+            if (response.data.ok) {
+                dispatch(actFetchUserRegisteredCourse(response.data.data));
+
+                return {
+                    ok: true,
+                }
+            }
+
+            return {
+                ok: false,
+            }
+        } catch (error) {
+            return {
+                ok: false,
+            }
+        }
+    }
+}
+
+export const actFetchUserRegisteredCourseAsync = ({
+    courseId = null,
+}) => 
+{
+    return async dispatch => {
+        if (!courseId) return;
+
+        try {
+            const response = await CourseService.getUserDetailRegisteredCourse(courseId);
+
+            if (response.data.ok) {
+                dispatch(actFetchUserRegisteredCourse(response.data.data));
+
+                return {
+                    ok: true,
+                }
+            }
+
+            return {
+                ok: false,
+            }
+        } catch (error) {
+            return {
+                ok: false,
+            }
+        }
+    }
+}
+
+const actFetchUserRegisteredCourse = (courseDetail) => {
+    return {
+        type: ACT_FETCH_USER_REGISTERED_COURSE,
+        payload: {
+            courseDetail
+        }
+    }
+}
+
+export const actRegisterNewCourse = ({
+    courseId = null,
+}) => 
+{
+    return async () => {
+        if (!courseId) return;
+
+        try {
+            const response = await CourseService.register(courseId);
+
+            if (response.data.ok) {
+                return {
+                    ok: true
+                }
+            }
+
+            return {
+                ok: false,
+            }
+        } catch (error) {
+            return {
+                ok: false,
+            }
+        }
+    }
+}
 
 export const actFetchListCoursesAsync = ({
     page = 1,

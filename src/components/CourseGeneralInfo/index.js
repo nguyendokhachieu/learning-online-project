@@ -2,10 +2,13 @@ import { useState } from "react";
 import "./course-general-info.scss";
 
 export default function CourseGeneralInfo({
-  hideSideNav = function() {}
+  hideSideNav = function() {},
+  registeredCourseDetail = null,
 }) 
 {
   const [isShowMaximizeButton, setIsShowMaximizeButton] = useState(false);
+
+  if (!registeredCourseDetail) return null;
 
   return (
     <div className="course-general-info">
@@ -17,11 +20,14 @@ export default function CourseGeneralInfo({
       <div className="info">
         <h2
           className="course-name-in-detail-page"
-          title="Khóa học React js cơ bản cho người mới"
+          title={ registeredCourseDetail.name }
         >
-          Khóa học React js cơ bản cho người mới
+          { registeredCourseDetail.name }
         </h2>
-        <div className="course-process">Hoàn thành 99/199 bài học (51%)</div>
+        <div className="course-process">
+          Hoàn thành { registeredCourseDetail.progress_count }/{ registeredCourseDetail.total_lessons } bài học 
+          ({ Math.round(Number(registeredCourseDetail.progress_count) * 100 / Number(registeredCourseDetail.total_lessons)) }%)
+        </div>
       </div>
       <div className="minimize">
         <button className="btn-minimize" onClick={ () => { hideSideNav(); setIsShowMaximizeButton(!isShowMaximizeButton) } }>

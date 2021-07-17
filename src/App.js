@@ -29,8 +29,12 @@ function App() {
     logoutConfirmationModal,
   } = useSelector(state => state.modals);
 
-  const isHideFooter = ['/learn', '/login', '/register'].includes(location.pathname || '');
-  const isHideHeader = ['/login', '/register'].includes(location.pathname || '');
+  // const isHideFooter = ['/learn', '/login', '/register'].includes(location.pathname || '');
+  const isHideFooter = location.pathname.startsWith('/learn') || 
+                        location.pathname.startsWith('/login') ||
+                        location.pathname.startsWith('/register');
+  const isHideHeader = location.pathname.startsWith('/login') || 
+                        location.pathname.startsWith('/register');
 
   useEffect(() => {
     if (loading) return;

@@ -1,4 +1,9 @@
-export default function LessonItem() {
+export default function LessonItem({
+  lesson = null,
+}) 
+{
+  if (!lesson) return null;
+
   return (
     <li className="item">
       <div className="indicator">
@@ -7,7 +12,7 @@ export default function LessonItem() {
         </div>
       </div>
       <div className="lesson">
-        <h5 className="lesson-name">22. Abc</h5>
+        <h5 className="lesson-name">{ lesson.name }</h5>
         <div className="lesson-time">15:03</div>
       </div>
     </li>

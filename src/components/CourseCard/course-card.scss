@@ -39,6 +39,13 @@
             font-weight: 700;
         }
 
+        .btn-register.disabled {
+            pointer-events: none;
+            color: $gray;
+            background-color: $light-gray;
+            border-color: $light-gray;
+        }
+
         @media screen and (max-width: 992px) {
             position: fixed;
             z-index: 2;

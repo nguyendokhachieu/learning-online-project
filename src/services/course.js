@@ -21,5 +21,61 @@ export const CourseService = {
                 course_id: courseId,
             }
         })
+    },
+
+    register(courseId = null) {
+        if (!courseId) return;
+        const token = localStorage.getItem('accessToken');
+
+        return api.call().post('/courses/user/actions/register', JSON.stringify({
+            course_id: courseId,
+        }), {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(token))),
+            }
+        })
+    },
+
+    checkIfCourseHasBeenRegistered(courseId = null) {
+        if (!courseId) return;
+        const token = localStorage.getItem('accessToken');
+        
+        return api.call().post('/courses/user/check/registered', JSON.stringify({
+            course_id: courseId,
+        }), {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(token))),
+            }
+        })
+    },
+
+    getUserDetailRegisteredCourse(courseId = null) {
+        if (!courseId) return;
+        const token = localStorage.getItem('accessToken');
+
+        return api.call().post('/courses/user/learning/get/detail', JSON.stringify({
+            course_id: courseId,
+        }), {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(token))),
+            }
+        })
+    },
+
+    getUserDetailRegisteredCourse_ByLessonId(lessonId = null) {
+        if (!lessonId) return;
+        const token = localStorage.getItem('accessToken');
+
+        return api.call().post('/courses/user/learning/check/detail', JSON.stringify({
+            lesson_id: lessonId,
+        }), {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(token))),
+            }
+        })
     }
 }
