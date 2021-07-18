@@ -11,9 +11,15 @@ export default function CourseGeneralInfo({
   if (!registeredCourseDetail) return null;
 
   return (
-    <div className="course-general-info">
+    <div 
+      className="course-general-info" 
+      data-width={ Math.round(Number(registeredCourseDetail.progress_count) * 10 / Number(registeredCourseDetail.total_lessons)) }
+    >
       <div className={ isShowMaximizeButton ? "maximize" : "maximize hide" }>
-        <button className="btn-maximize" onClick={ () => { hideSideNav(); setIsShowMaximizeButton(!isShowMaximizeButton) } }>
+        <button 
+          className="btn-maximize" 
+          onClick={ () => { hideSideNav(); setIsShowMaximizeButton(!isShowMaximizeButton) } }
+        >
           <i className="fas fa-chevron-left icon"></i>
         </button>
       </div>
@@ -30,10 +36,14 @@ export default function CourseGeneralInfo({
         </div>
       </div>
       <div className="minimize">
-        <button className="btn-minimize" onClick={ () => { hideSideNav(); setIsShowMaximizeButton(!isShowMaximizeButton) } }>
+        <button 
+          className="btn-minimize" 
+          onClick={ () => { hideSideNav(); setIsShowMaximizeButton(!isShowMaximizeButton) } }
+        >
           <i className="fas fa-chevron-right icon"></i>
         </button>
       </div>
+      <div className="progress-estimate"></div>
     </div>
   );
 }

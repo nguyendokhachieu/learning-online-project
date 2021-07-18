@@ -49,6 +49,7 @@
                             align-items: center;
                             justify-content: center;
                             background-color: transparent;
+                            transition: all 0.25s ease;
     
                             .icon {
                                 color: $icon-color;
@@ -59,6 +60,10 @@
                                 background-color: $light-gray;
                             }
                         }
+
+                        .btn-drop.rotate-180 {
+                            transform: rotate(180deg);
+                        }
                     }
 
                     &:hover {
@@ -68,6 +73,10 @@
 
                 .dropdown-items {
                     cursor: pointer;
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: max-height 0.25s ease-in-out;
+
                     
                     .item {
                         padding: 1.2rem 0 1.2rem 1rem;
@@ -82,7 +91,7 @@
 
                                 .icon {
                                     color: $icon-color;
-                                    font-size: 1.8rem;
+                                    font-size: 1.6rem;
                                 }
                             }
                         }
@@ -111,6 +120,8 @@
                     }
 
                     .item.disabled {
+                        cursor: default;
+                        pointer-events: none;
                         background-color: $light;
                         opacity: 0.4;
                     }
@@ -118,6 +129,12 @@
                     .item.active {
                         background-color: $light-pink;
                     }
+                }
+
+                .dropdown-items.active {
+                    max-height: 1300px; // max-items = 20, each item 65px
+                    overflow: hidden;
+                    transition: max-height 0.25s ease-in-out;
                 }
             }
         }

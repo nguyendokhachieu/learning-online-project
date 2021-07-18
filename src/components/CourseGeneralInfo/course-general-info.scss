@@ -5,6 +5,7 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
+    background-color: transparent;
 
     .maximize {
         position: absolute;
@@ -79,4 +80,44 @@
             }
         }
     }
+
+    .progress-estimate {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        height: 100%;
+        background-color: $light-green;
+    }
+}
+
+.course-general-info[data-width="1"] .progress-estimate {
+    width: 10%;
+}
+.course-general-info[data-width="2"] .progress-estimate {
+    width: 20%;
+}
+.course-general-info[data-width="3"] .progress-estimate {
+    width: 30%;
+}
+.course-general-info[data-width="4"] .progress-estimate {
+    width: 40%;
+}
+.course-general-info[data-width="5"] .progress-estimate {
+    width: 50%;
+}
+.course-general-info[data-width="6"] .progress-estimate {
+    width: 60%;
+}
+.course-general-info[data-width="7"] .progress-estimate {
+    width: 70%;
+}
+.course-general-info[data-width="8"] .progress-estimate {
+    width: 80%;
+}
+.course-general-info[data-width="9"] .progress-estimate {
+    width: 90%;
+}
+.course-general-info[data-width="10"] .progress-estimate  {
+    width: 100%;
 }

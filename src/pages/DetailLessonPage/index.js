@@ -5,24 +5,22 @@ import { useHistory, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 
 import { actHideLoadingFullscreen, actShowLoadingFullscreen } from "../../store/modals/actions";
+import { actFetchUserRegisteredCourseByLessonIdAsync } from "../../store/courses/actions";
 
 import YouTubeVideo from "../../components/YouTubeVideo";
 import NavUnderVideo from "../../components/NavUnderVideo";
 import CourseGeneralInfo from "../../components/CourseGeneralInfo";
 import CourseChapter from "../../components/CourseChapter";
-import { actFetchUserRegisteredCourseByLessonIdAsync } from "../../store/courses/actions";
 
 export default function DetailLessonPage() {
   const history = useHistory();
   const params = useParams();
   const dispatch = useDispatch();
   
-  const { registeredCourseDetail } = useSelector(state => state.courses);
+  const { registeredCourseDetail, currentLessonInfo } = useSelector(state => state.courses);
 
   const [isSideNavHidden, setIsSideNavHidden] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  console.log(registeredCourseDetail);
 
   useEffect(() => {
     if (history && history.action === 'POP') {
@@ -64,13 +62,14 @@ export default function DetailLessonPage() {
   }, [dispatch, history]);
 
   if (!registeredCourseDetail) return null;
+  if (!currentLessonInfo) return null;
 
   return (
     <div className={ isSideNavHidden ? "detail-lesson-section hide-side-nav" : "detail-lesson-section" }>
       <div className="video">
         <div className="content-scrollable">
           <div className="container">
-            <YouTubeVideo videoId={ registeredCourseDetail?.current_video_id } />
+            <YouTubeVideo videoId={ currentLessonInfo?.current_video_id } />
             <NavUnderVideo />
           </div>
         </div>

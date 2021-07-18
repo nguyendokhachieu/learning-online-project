@@ -5,15 +5,15 @@ export default function Chapter({
   chapter
 }) 
 {
-  const [showLessonsList, setShowLessonsList] = useState(false);
+  const [showLessonsList, setShowLessonsList] = useState(true);
 
   return (
     <li className="chapter" title={ chapter.name }>
       <div className="chapter-name" onClick={ () => setShowLessonsList(!showLessonsList) }>
         <span className="text">{ chapter.name }</span>
-        <i className={ showLessonsList ? "fas fa-caret-up icon" : "fas fa-caret-up icon rotate-up"}></i>
+        <i className={ showLessonsList ? "fas fa-caret-up icon" : "fas fa-caret-up icon rotate-180"}></i>
       </div>
-      <ul className={ showLessonsList ? "lessons-list" : "lessons-list hidden" }>
+      <ul className={ showLessonsList ? "lessons-list active" : "lessons-list" }>
         {
           chapter.lessons_list.length !== 0 && (
             chapter.lessons_list.map(lesson => {

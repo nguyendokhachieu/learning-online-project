@@ -29,12 +29,15 @@
                     transition: all 0.4s ease;
                 }
 
-                .icon.rotate-up {
+                .icon.rotate-180 {
                     transform: rotate(180deg);
                 }
             }
 
             .lessons-list {
+                overflow: hidden;
+                max-height: 0;
+                transition: max-height 0.25s ease-in-out;
 
                 .lesson {
                     padding: 1.5rem 2rem;
@@ -54,8 +57,10 @@
                 }
             }
 
-            .lessons-list.hidden {
-                display: none;
+            .lessons-list.active {
+                overflow: hidden;
+                max-height: 1000px;
+                transition: max-height 0.25s ease-in-out;
             }
         }
     }

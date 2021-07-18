@@ -4,6 +4,45 @@ export const ACT_FETCH_LIST_COURSES = 'ACT_FETCH_LIST_COURSES';
 export const ACT_FETCH_COURSE_IN_DETAIL = 'ACT_FETCH_COURSE_IN_DETAIL';
 export const ACT_REGISTER_NEW_COURSE = 'ACT_REGISTER_NEW_COURSE';
 export const ACT_FETCH_USER_REGISTERED_COURSE = 'ACT_FETCH_USER_REGISTERED_COURSE';
+export const ACT_UPDATE_CURRENT_LESSON_INFO = 'ACT_UPDATE_CURRENT_LESSON_INFO';
+
+export const actUpdateCurrentLessonInfo = (courseDetail) => {
+    return {
+        type: ACT_UPDATE_CURRENT_LESSON_INFO,
+        payload: {
+            courseDetail
+        }
+    }
+}
+
+export const actCheckNextLesson = ({
+    currentLessonId = null,
+    nextLessonId = null,
+}) => 
+{
+    return async dispatch => {
+        if (!currentLessonId) return;
+        if (!nextLessonId) return;
+
+        try {
+            const response = await CourseService.checkNextLesson({
+                currentLessonId,
+                nextLessonId,
+            })
+
+            if (response.data.ok) {
+                dispatch(actFetchUserRegisteredCourse(response.data.data));
+                dispatch(actUpdateCurrentLessonInfo(response.data.data));
+
+                return { ok: true }
+            }
+
+            return { ok: false }
+        } catch (error) {
+            return { ok: false }
+        }
+    }
+}
 
 export const actFetchUserRegisteredCourseByLessonIdAsync = ({
     lessonId = null,
@@ -17,6 +56,7 @@ export const actFetchUserRegisteredCourseByLessonIdAsync = ({
 
             if (response.data.ok) {
                 dispatch(actFetchUserRegisteredCourse(response.data.data));
+                dispatch(actUpdateCurrentLessonInfo(response.data.data));
 
                 return {
                     ok: true,
@@ -46,6 +86,7 @@ export const actFetchUserRegisteredCourseAsync = ({
 
             if (response.data.ok) {
                 dispatch(actFetchUserRegisteredCourse(response.data.data));
+                dispatch(actUpdateCurrentLessonInfo(response.data.data));
 
                 return {
                     ok: true,

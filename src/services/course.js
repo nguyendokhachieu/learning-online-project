@@ -77,5 +77,26 @@ export const CourseService = {
                 'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(token))),
             }
         })
+    },
+
+    checkNextLesson({
+        currentLessonId = null,
+        nextLessonId = null,
+    }) 
+    {
+        if (!currentLessonId) return;
+        if (!nextLessonId) return;
+
+        const token = localStorage.getItem('accessToken');
+
+        return api.call().post('/courses/user/learning/lesson/detail', JSON.stringify({
+            current_lesson_id: currentLessonId,
+            next_lesson_id: nextLessonId,
+        }), {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(token))),
+            }
+        })
     }
 }

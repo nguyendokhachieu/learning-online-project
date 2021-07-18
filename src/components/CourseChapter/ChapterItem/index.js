@@ -5,11 +5,13 @@ import LessonsList from "../LessonsList";
 
 export default function ChapterItem({
   chapter = null,
+  registeredCourseDetail = null,
 }) 
 {
-  const [showLessonsList, setShowLessonsList] = useState(false);
+  const [showLessonsList, setShowLessonsList] = useState(true);
 
   if (!chapter) return null;
+  if (!registeredCourseDetail) return null;
   
   return (
     <section className="dropdown">
@@ -17,9 +19,11 @@ export default function ChapterItem({
         onToggleDropdown={ () => setShowLessonsList(!showLessonsList) } 
         chapter={ chapter }
       />
-      {
-        showLessonsList ? <LessonsList chapter={ chapter } /> : null
-      }
+      <LessonsList 
+        showLessonsList={ showLessonsList } 
+        registeredCourseDetail={ registeredCourseDetail }
+        chapter={ chapter } 
+      />
     </section>
   );
 }

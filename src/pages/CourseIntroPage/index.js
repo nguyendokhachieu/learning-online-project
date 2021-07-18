@@ -55,7 +55,7 @@ export default function CourseIntroPage() {
   if (loading) return null;
 
   if (!courseId || !courseDetail) return <NotFound />;
-
+  
   return (
     <section className="courses-introduction-section">
       <div className="container">
