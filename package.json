@@ -24,6 +24,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "sass": "^1.35.2",
+    "striptags": "^3.2.0",
     "tsparticles": "^1.31.1",
     "web-vitals": "^1.1.2"
   },
