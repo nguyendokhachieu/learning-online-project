@@ -14,6 +14,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 import ModalLoadingFullScreen from "./pages/ModalLoadingFullScreen";
 import ModalLogoutConfirmation from "./components/Header/IconGroup/UserButton/UserSection/ModalLogoutConfirmation";
+import ModalConfirmDelete from "./components/NavUnderVideo/TabNotes/ModalConfirmDelete";
 
 import NotificationCard from "./components/NotificationCard";
 import { useEffect, useState } from "react";
@@ -84,6 +85,7 @@ function App() {
     </div>
     <ModalLoadingFullScreen show={ modalLoadingFullScreen.show } />
     <ModalLogoutConfirmation show={ logoutConfirmationModal.show } />
+    <ModalConfirmDelete />
     <NotificationCard 
       show={ notificationCard.show } 
       content={ notificationCard.content }

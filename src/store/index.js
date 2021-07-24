@@ -5,11 +5,13 @@ import logger from 'redux-logger'
 import { courseReducer } from "./courses/reducer";
 import { modalsReducer } from './modals/reducer';
 import { usersReducer } from './users/reducer';
+import { notesReducer } from './notes/reducer';
 
 const rootReducer = combineReducers({
     courses: courseReducer,
     modals: modalsReducer,
     users: usersReducer,
+    notes: notesReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk, logger));

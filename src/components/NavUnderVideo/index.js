@@ -19,7 +19,7 @@ export default function NavUnderVideo() {
             tabSelected === 'general' 
               ? <TabGenerals />
               : tabSelected === 'note' 
-                  ? <TabNotes />
+                  ? <TabNotes tabSelected={ tabSelected } />
                     : tabSelected === 'related' 
                       ? <TabRelateds />
                       : <TabChaptersList />

@@ -1,6 +1,7 @@
 @import "../../../assets/scss/variables";
 
 .note {
+    padding-bottom: 8rem;
 
     .note-heading {
         display: flex;
@@ -39,10 +40,132 @@
                 background-color: $icon-color;
             }
         }
+
+        .btn-submit.disabled {
+            cursor: default !important;
+            pointer-events: none;
+            color: $light-gray;
+            border-color: $light-gray;
+            opacity: 0.9;
+            
+        }
     }
 
-    .note-show {
-        margin: 4rem 0;
-        font-size: 1.6rem;
+    .note-show-zone {
+        margin: 2rem 0;
+        font-size: 1.5rem;
+        letter-spacing: 0.05rem;
+
+        div[data-parsley] {
+            padding: 0 1rem;
+            border-radius: 10px;
+            transition: all 0.15s ease;
+
+            &:hover {
+                background-color: $light;
+
+                .note-item-controls .btn-delete {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+
+        * {
+            word-break: break-word;
+        }
+        
+        .singleNoteZone-focus {
+            background-color: $light-pink;
+        }
+
+        div {
+            &>* {
+                padding: 0.2rem 0;
+                margin: 0.2rem 0;
+            }
+    
+            .note-item-controls {
+                text-align: right;
+    
+                .btn-delete {
+                    border: 0;
+                    outline: none;
+                    padding: 0.5rem 1rem;
+                    cursor: pointer;
+                    background-color: transparent;
+                    color: $gray-dark;
+                    transition: all 0.15s ease;
+                    border-radius: 5px;
+                    visibility: hidden;
+                    opacity: 0;
+    
+                    &:hover {
+                        background-color: #ccc;
+                    }
+                }
+            }
+    
+            blockquote {
+                display: block;
+                border: 2px solid $light-gray;
+                border-top: 0;
+                border-right: 0;
+                border-bottom: 0;
+                padding-left: 1rem;
+                font-style: italic;
+                color: $gray;
+                margin: 1.5rem 0;
+            }
+    
+            div {
+                line-height: 1.333;
+            }
+    
+            code {
+                display: inline-block;
+                background-color: #eee;
+                padding: 1rem;
+                margin: 1.5rem 0;
+            }
+    
+            .italic {
+                font-style: italic !important;
+            }
+    
+            .bold {
+                font-weight: 800 !important;
+            }
+    
+            .underline {
+                text-decoration: underline !important;
+            }
+        }
+    }
+
+    .note-show-zone-notifs {
+        text-align: center;
+
+        .text {
+            font-size: 1.4rem;
+            color: $gray;
+        }
+
+        .btn-loadmore {
+            font-size: 1.4rem;
+            display: inline-block;
+            border-radius: 10px;
+            transition: all 0.15s ease;
+
+            &:hover {
+                background-color: #eee;
+            }
+        }
+
+        .btn-loadmore.disabled {
+            cursor: default;
+            pointer-events: none;
+            color: $light-gray;
+        }
     }
 }

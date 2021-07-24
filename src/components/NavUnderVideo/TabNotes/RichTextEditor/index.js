@@ -1,13 +1,12 @@
-import "./rich.css";
+import "./multiNote.css";
 
 import React from "react";
-import { Editor, EditorState, RichUtils, getDefaultKeyBinding, convertToRaw } from "draft-js";
-
+import { Editor, EditorState, ContentState, RichUtils, getDefaultKeyBinding, convertToRaw } from "draft-js";
 export default class RichTextEditor extends React.Component {
     constructor(props) {
       super(props);
       this.state = {editorState: EditorState.createEmpty()};
-
+      
       this.focus = () => this.refs.editor.focus();
       this.onChange = (editorState) => {
         this.setState({editorState});
@@ -18,6 +17,14 @@ export default class RichTextEditor extends React.Component {
       this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
       this.toggleBlockType = this._toggleBlockType.bind(this);
       this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
+    }
+
+    componentDidUpdate(prevProps, _) {
+      if (!prevProps.reset && this.props.reset) {
+        // const text = convertToRaw(prevState.editorState.getCurrentContent()).blocks[0].text;
+        const editorStateReset = EditorState.push(this.state.editorState, ContentState.createFromText(''));
+        this.setState({ editorState: editorStateReset })
+      }
     }
 
     _handleKeyCommand(command, editorState) {
@@ -65,16 +72,16 @@ export default class RichTextEditor extends React.Component {
     render() {
       const {editorState} = this.state;
 
-      let className = 'RichEditor-editor';
+      let className = 'multiNote-editor';
       var contentState = editorState.getCurrentContent();
       if (!contentState.hasText()) {
         if (contentState.getBlockMap().first().getType() !== 'unstyled') {
-          className += ' RichEditor-hidePlaceholder';
+          className += ' multiNote-hidePlaceholder';
         }
       }
 
       return (
-        <div className="RichEditor-root">
+        <div className="multiNote-wrap">
           <BlockStyleControls
             editorState={editorState}
             onToggle={this.toggleBlockType}
@@ -113,7 +120,7 @@ export default class RichTextEditor extends React.Component {
 
   function getBlockStyle(block) {
     switch (block.getType()) {
-      case 'blockquote': return 'RichEditor-blockquote';
+      case 'blockquote': return 'multiNote-blockquote';
       default: return null;
     }
   }
@@ -128,9 +135,9 @@ export default class RichTextEditor extends React.Component {
     }
 
     render() {
-      let className = 'RichEditor-styleButton';
+      let className = 'multiNote-styleButton';
       if (this.props.active) {
-        className += ' RichEditor-activeButton';
+        className += ' multiNote-activeButton';
       }
 
       return (
@@ -148,10 +155,10 @@ export default class RichTextEditor extends React.Component {
     {label: 'H4', style: 'header-four'},
     {label: 'H5', style: 'header-five'},
     {label: 'H6', style: 'header-six'},
-    {label: 'Blockquote', style: 'blockquote'},
-    {label: 'UL', style: 'unordered-list-item'},
-    {label: 'OL', style: 'ordered-list-item'},
-    {label: 'Code Block', style: 'code-block'},
+    {label: 'Có viền trái', style: 'blockquote'},
+    // {label: 'UL', style: 'unordered-list-item'},
+    // {label: 'OL', style: 'ordered-list-item'},
+    {label: 'Dạng khối', style: 'code-block'},
   ];
 
   const BlockStyleControls = (props) => {
@@ -163,7 +170,7 @@ export default class RichTextEditor extends React.Component {
       .getType();
 
     return (
-      <div className="RichEditor-controls">
+      <div className="multiNote-controls">
         {BLOCK_TYPES.map((type) =>
           <StyleButton
             key={type.label}
@@ -178,17 +185,17 @@ export default class RichTextEditor extends React.Component {
   };
 
   var INLINE_STYLES = [
-    {label: 'Bold', style: 'BOLD'},
-    {label: 'Italic', style: 'ITALIC'},
-    {label: 'Underline', style: 'UNDERLINE'},
-    {label: 'Monospace', style: 'CODE'},
+    {label: 'Chữ đậm', style: 'bold'},
+    {label: 'Chữ nghiêng', style: 'italic'},
+    {label: 'Gạch dưới', style: 'underline'},
+    // {label: 'Monospace', style: 'CODE'},
   ];
 
   const InlineStyleControls = (props) => {
     const currentStyle = props.editorState.getCurrentInlineStyle();
     
     return (
-      <div className="RichEditor-controls">
+      <div className="multiNote-controls">
         {INLINE_STYLES.map((type) =>
           <StyleButton
             key={type.label}
