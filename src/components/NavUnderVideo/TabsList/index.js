@@ -33,6 +33,7 @@ export default function TabsList({
         <span className="text">Liên quan</span>
       </li> */}
       <li 
+        id="chaptersList"
         className={ tabSelected === 'chaptersList' ? "item active" : "item" }
         onClick={ () => setTabSelected('chaptersList') }
       >

@@ -1,14 +1,18 @@
 import "./chapters-list.scss";
 
+import { useSelector } from "react-redux";
+
 import CourseChapter from "../../CourseChapter";
 
 export default function TabChaptersList() {
+
+  const { registeredCourseDetail } = useSelector(state => state.courses);
+
+  if (!registeredCourseDetail) return null;
+
   return (
     <div id="chaptersList" className="chapters-list">
-      <CourseChapter />
-      {/* <section className="dropdown">
-      If this doesnot depend on
-      </section> */}
+      <CourseChapter registeredCourseDetail={ registeredCourseDetail } />
     </div>
   );
 }
