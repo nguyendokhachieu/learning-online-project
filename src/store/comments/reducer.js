@@ -1,6 +1,8 @@
 import { 
     ACT_GET_LIST_PARENT_COMMENTS,
     ACT_GET_LIST_CHILDREN_COMMENTS,
+    ACT_DELETE_PARENT_COMMENT,
+    ACT_DELETE_CHILD_COMMENT,
  } from "./actions";
 
 export const generateChildCommentKey = parentId => `parent-${parentId}`;
@@ -20,6 +22,36 @@ const initState = {
 
 export const commentsReducer = (state = initState, action) => {
     switch (action.type) {
+        case ACT_DELETE_CHILD_COMMENT:
+            const deletedCId = action.payload.commentId;
+            const dCKey = generateChildCommentKey(action.payload.parentId);
+
+            return {
+                ...state,
+                childrenComments: {
+                    ...state.childrenComments,
+                    [dCKey]: {
+                        ...state.childrenComments[dCKey],
+                        list: state.childrenComments[dCKey].list.filter(cmt => {
+                            return cmt.id !== deletedCId
+                        })
+                    }
+                }
+            }
+
+        case ACT_DELETE_PARENT_COMMENT:
+            const deletedId = action.payload.commentId;
+
+            return {
+                ...state,
+                parentComments: {
+                    ...state.parentComments,
+                    list: state.parentComments.list.filter(cmt => {
+                        return cmt.id !== deletedId
+                    })
+                }
+            }
+
         case ACT_GET_LIST_CHILDREN_COMMENTS:
             const cKey = generateChildCommentKey(action.payload.parentId);
             

@@ -100,6 +100,25 @@ export const CommentService = {
                 concat(unescape(encodeURIComponent(token)))),
             }
         })
+    },
+
+    delete({
+        commentId = null,
+    }) {
+        if (!commentId) return;
+
+        const token = localStorage.getItem('accessToken');
+
+        if (!token) return; 
+
+        return api.call().post('/comments/remove', null, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).
+                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
+                concat(unescape(encodeURIComponent(token)))),
+            }
+        })
     }
     
 }

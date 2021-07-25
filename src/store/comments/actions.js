@@ -3,6 +3,72 @@ import { CommentService } from "../../services/comment";
 export const ACT_POST_NEW_COMMENT = 'ACT_POST_NEW_COMMENT';
 export const ACT_GET_LIST_PARENT_COMMENTS = 'ACT_GET_LIST_PARENT_COMMENTS';
 export const ACT_GET_LIST_CHILDREN_COMMENTS = 'ACT_GET_LIST_CHILDREN_COMMENTS';
+export const ACT_DELETE_PARENT_COMMENT = 'ACT_DELETE_PARENT_COMMENT';
+export const ACT_DELETE_CHILD_COMMENT = 'ACT_DELETE_CHILD_COMMENT';
+
+export const actDeleteChildCommentAsync = ({
+    commentId = null,
+    parentId,
+}) => 
+{
+    return async dispatch => {
+        if (!commentId) return;
+
+        try {
+            const response = await CommentService.delete({ commentId })
+
+            if (response.data.ok) {
+                dispatch(actDeleteChildComment({ 
+                    commentId,
+                    parentId,
+                }))
+            }
+        } catch (error) {
+            
+        }
+    }
+}
+
+const actDeleteChildComment = ({ 
+    commentId,
+    parentId,
+}) => {
+    return {
+        type: ACT_DELETE_CHILD_COMMENT,
+        payload: {
+            commentId,
+            parentId,
+        }
+    }
+}
+
+export const actDeleteParentCommentAsync = ({
+    commentId = null
+}) => 
+{
+    return async dispatch => {
+        if (!commentId) return;
+
+        try {
+            const response = await CommentService.delete({ commentId })
+
+            if (response.data.ok) {
+                dispatch(actDeleteParentComment({ commentId }))
+            }
+        } catch (error) {
+            
+        }
+    }
+}
+
+const actDeleteParentComment = ({ commentId }) => {
+    return {
+        type: ACT_DELETE_PARENT_COMMENT,
+        payload: {
+            commentId,
+        }
+    }
+}
 
 export const actUnlikeCommentAsync = ({
     commentId = null,

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { actLikeCommentAsync, actUnlikeCommentAsync } from "../../../../../store/comments/actions";
 import dayjs from "dayjs";
+import { actLikeCommentAsync, actUnlikeCommentAsync } from "../../../../../store/comments/actions";
+
+import DeleteComment from "./DeleteComment";
 
 export default function Reactions({
   // toggleReplyZone = function(){},
@@ -79,7 +81,7 @@ export default function Reactions({
       </div> */}
       {
         user?.id === comment?.user_id 
-          ? <div className="react deleteCmt">Xóa</div>
+          ? <DeleteComment comment={ comment } />
           : null
       }
       <div className="react datetime">
