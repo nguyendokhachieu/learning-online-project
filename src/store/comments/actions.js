@@ -1,7 +1,57 @@
 import { CommentService } from "../../services/comment";
 
 export const ACT_POST_NEW_COMMENT = 'ACT_POST_NEW_COMMENT';
-export const ACT_GET_LIST_COMMENTS = 'ACT_GET_LIST_COMMENTS';
+export const ACT_GET_LIST_PARENT_COMMENTS = 'ACT_GET_LIST_PARENT_COMMENTS';
+export const ACT_GET_LIST_CHILDREN_COMMENTS = 'ACT_GET_LIST_CHILDREN_COMMENTS';
+
+export const actGetListCommentsChildrenAsync = ({
+    lessonId = null,
+    parentId = null,
+    page = 1,
+    perPage = 5,
+}) => {
+    return async dispatch => {
+        if (!lessonId) return;
+        if (!parentId) return;
+
+        try {
+            const response = await CommentService.get({
+                lessonId,
+                parentId,
+                page,
+                perPage,
+            })
+
+            if (response.data.ok) {
+                dispatch(actGetListCommentsChildren({
+                    page,
+                    perPage,
+                    parentId,
+                    list: response.data.data || [],
+                }))
+            }
+        } catch (error) {
+            
+        }
+    }
+}
+
+const actGetListCommentsChildren = ({
+    page,
+    perPage,
+    parentId,
+    list,
+}) => {
+    return {
+        type: ACT_GET_LIST_CHILDREN_COMMENTS,
+        payload: {
+            page, 
+            perPage,
+            parentId,
+            list,
+        }
+    }
+}
 
 export const actGetListCommentsParentAsync = ({
     lessonId = null,
@@ -40,7 +90,7 @@ const actGetListCommentsParent = ({
     list,
 }) => {
     return {
-        type: ACT_GET_LIST_COMMENTS,
+        type: ACT_GET_LIST_PARENT_COMMENTS,
         payload: {
             page, 
             perPage,

@@ -14,12 +14,12 @@ export default function Reactions({
   return (
     <div className="comment-reactions">
       <div className="react like">Thích</div>
-      <div 
+      {/* <div 
         className="react reply"
         onClick={ () => toggleReplyZone() }
       >
         Trả lời
-      </div>
+      </div> */}
       {
         user?.id === comment?.user_id 
           ? <div className="react deleteCmt">Xóa</div>

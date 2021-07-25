@@ -157,6 +157,20 @@
                             overflow: hidden;
                             white-space: nowrap;
                             text-overflow: ellipsis;
+                            line-height: 1;
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+
+                            .tag.commentator-self {
+                                margin-left: 1rem;
+                                font-size: 1.2rem;
+                                font-weight: 400;
+                                color: $pink;
+                                background-color: $light-pink;
+                                border-radius: 10px;
+                                padding: 0.35rem 0.75rem;
+                            }
                         }
 
                         .comment-text {
@@ -190,16 +204,21 @@
                         }
                     }
 
-                    .like {
-                        margin-right: 1rem;
-                        padding-right: 1rem;
+                    .like.active {
+                        color: $pink;
+                        font-weight: 600;
+                    }
+
+                    .reply {
+                        margin-left: 1rem;
+                        padding-left: 1rem;
                         position: relative;
 
                         &::after {
                             content: '';
                             position: absolute;
                             top: 50%;
-                            left: 100%;
+                            left: 0;
                             transform: translate(-50%, -50%);
                             width: 3px;
                             height: 3px;
@@ -208,9 +227,41 @@
                         }
                     }
 
-                    .like.active {
-                        color: $pink;
-                        font-weight: 600;
+                    .deleteCmt {
+                        margin-left: 1rem;
+                        padding-left: 1rem;
+                        position: relative;
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            top: 50%;
+                            left: 0;
+                            transform: translate(-50%, -50%);
+                            width: 3px;
+                            height: 3px;
+                            border-radius: 50%;
+                            background-color: $gray-dark;
+                        }
+                    }
+
+                    .datetime {
+                        margin-left: 1rem;
+                        padding-left: 1rem;
+                        position: relative;
+                        color: $gray;
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            top: 50%;
+                            left: 0;
+                            transform: translate(-50%, -50%);
+                            width: 3px;
+                            height: 3px;
+                            border-radius: 50%;
+                            background-color: $gray-dark;
+                        }
                     }
                 }
 
@@ -235,7 +286,8 @@
                 }
 
                 .comment-show-reply.disabled {
-                    display: none;
+                    opacity: 0.5;
+                    pointer-events: none;
                 }
 
                 .comment-reply {
@@ -331,6 +383,70 @@
                     display: none;
                 }
 
+            }
+
+            .comment-item.cmtChild {
+                margin-bottom: 1.5rem;
+
+                .comment-top {
+                    .avatar {
+                        width: 3.4rem;
+                        height: 3.4rem;
+                        margin-right: 1rem;
+                        
+                        .avatar-img {
+                            margin-top: 1rem;
+                            border-radius: 50%;
+                            border: 1px solid $light-gray;
+                            width: 3.4rem;
+                            height: 3.4rem;
+                            object-fit: cover;
+                        }
+                    }
+
+                    .comment-content {
+                        .commentator-name {
+                            font-size: 1.25rem;
+                        }
+
+                        .comment-text {
+                            margin-top: 0.5rem;
+                            font-size: 1.45rem;
+                            line-height: 1.333;
+                            word-break: break-word;
+
+                            div {
+                                word-break: inherit;
+                                line-height: inherit;
+                            }
+                        }
+                    }
+                }
+                
+                .comment-reactions {
+                    display: flex;
+                    justify-content: flex-start;
+                    margin-left: 5rem;
+                    margin-top: 0.4rem;
+                    margin-bottom: 0.5rem;
+                    font-size: 1.2rem;
+                    color: $gray-dark;
+
+                    .datetime {
+                        margin-left: 1rem;
+                        padding-left: 1rem;
+                        position: relative;
+                        color: $gray;
+                    }
+                }
+            }
+
+            .comment-item.ml-5 {
+                margin-left: 4.9rem;
+            }
+
+            .comment-item.mt-1 {
+                margin-top: 1rem;
             }
         }
 

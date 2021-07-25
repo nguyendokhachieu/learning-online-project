@@ -1,20 +1,25 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actGetListCommentsParentAsync, actPostNewCommentAsync } from "../../../../store/comments/actions";
+
+import { actPostNewCommentAsync } from "../../../../../store/comments/actions";
 
 const striptags = require('striptags');
 
-export default function Adder() {
-  const dispatch = useDispatch();
+export default function ReplyZone({
+  comment = null,
+  toggleReplyZone = function(){},
+}) 
+{
   const inputText = useRef();
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
-  const { currentLessonInfo } = useSelector(state => state.courses);
   const { user } = useSelector(state => state.users.currentUser);
+
+  const [loading, setLoading] = useState(false);
 
   function postComment() {
     if (loading) return;
-    if (!currentLessonInfo.current_lesson_id) return;
+    if (!comment) return;
     if (!user) return;
     if (!striptags(inputText.current && inputText.current.innerHTML)) return;
 
@@ -23,45 +28,42 @@ export default function Adder() {
     setLoading(true);
     dispatch(actPostNewCommentAsync({
       content,
-      lessonId: currentLessonInfo.current_lesson_id,
-      parentId: '0'
+      lessonId: comment.lesson_id,
+      parentId: comment.id
     })).then(() => {
       setLoading(false);
       inputText.current && (
         inputText.current.innerHTML = ''
       );
-
-      dispatch(actGetListCommentsParentAsync({
-        lessonId: currentLessonInfo.current_lesson_id,
-        parentId: '0',
-        page: 1,
-        perPage: 10,
-      }))
     })
   }
 
+  if (!comment) return null;
   if (!user) return null;
-  if (!currentLessonInfo.current_lesson_id) return null;
-
+  
   return (
-    <div className="comment-adder">
+    <div className="comment-reply">
       <div className="form">
         <div className="avatar">
           <img
-            src={ user.avatar !== 'null' && user.avatar !== '' ? user.avatar : "/assets/images/default-avatar.png" }
+            src={ user.avatar ? user.avatar : "/assets/images/default-avatar.png" }
             className="avatar-img"
             alt={ user.username }
           />
         </div>
         <div className="adder">
           <div
-            class="comment-input"
-            tabindex="0"
-            contenteditable="true"
+            className="comment-input"
+            tabIndex="0"
+            contentEditable="true"
             role="textbox"
             aria-multiline="true"
-            spellcheck="false"
-            placeholder="Nhập bình luận"
+            placeholder={ 
+              comment?.user_id === user?.id 
+                ? `Trả lời bình luận của bạn`
+                : `Trả lời bình luận của ${comment.username}` 
+            }
+            spellCheck="false"
             ref={ inputText }
           ></div>
         </div>
@@ -69,15 +71,15 @@ export default function Adder() {
       <div className="buttons">
         <button 
           className="btn btn-cancel"
-          onClick={ () => { inputText.current && ( inputText.current.innerHTML = '' ) } }
+          onClick={ () => toggleReplyZone() }
         >
-          Xóa tất cả
+          Hủy bỏ
         </button>
         <button 
           className={ loading ? "btn btn-submit disabled" : "btn btn-submit" }
           onClick={ postComment }
         >
-          Bình luận
+          { loading ? "Đang trả lời" : "Trả lời" }
         </button>
       </div>
     </div>

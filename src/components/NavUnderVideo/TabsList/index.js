@@ -26,12 +26,12 @@ export default function TabsList({
       >
         <span className="text">Ghi chú</span>
       </li>
-      <li 
+      {/* <li 
         className={ tabSelected === 'related' ? "item active" : "item" }
         onClick={ () => setTabSelected('related') }
       >
         <span className="text">Liên quan</span>
-      </li>
+      </li> */}
       <li 
         className={ tabSelected === 'chaptersList' ? "item active" : "item" }
         onClick={ () => setTabSelected('chaptersList') }

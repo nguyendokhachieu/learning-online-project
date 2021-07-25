@@ -5,6 +5,7 @@ import BodyContent from "./BodyContent";
 import Reactions from "./Reactions";
 import ShowRepliesButton from "./ShowRepliesButton";
 import ReplyZone from "./ReplyZone";
+import ChildrenCommentList from "./ChildrenCommentList";
 
 export default function CommentItem({
   comment = null,
@@ -20,15 +21,24 @@ export default function CommentItem({
         <Avatar comment={ comment } />
         <BodyContent comment={ comment } />
       </div>
-      <Reactions toggleReplyZone={ () => setShowReplyZone(!showReplyZone) } />
-      {
-        comment.has_children !== 0 
-          ? <ShowRepliesButton /> 
-          : null
-      }
+      <Reactions 
+        toggleReplyZone={ () => setShowReplyZone(!showReplyZone) } 
+        comment={ comment }
+      />
       {
         showReplyZone 
-          ? <ReplyZone comment={ comment } /> 
+          ? (
+            <ReplyZone 
+              comment={ comment } 
+              toggleReplyZone={ () => setShowReplyZone(!showReplyZone) }
+            /> 
+          )
+          : null
+      }
+      <ChildrenCommentList comment={ comment }/>
+      {
+        comment.has_children !== 0 
+          ? <ShowRepliesButton comment={ comment } /> 
           : null
       }
     </section>
