@@ -4,6 +4,52 @@ export const ACT_POST_NEW_COMMENT = 'ACT_POST_NEW_COMMENT';
 export const ACT_GET_LIST_PARENT_COMMENTS = 'ACT_GET_LIST_PARENT_COMMENTS';
 export const ACT_GET_LIST_CHILDREN_COMMENTS = 'ACT_GET_LIST_CHILDREN_COMMENTS';
 
+export const actUnlikeCommentAsync = ({
+    commentId = null,
+    type = 1,
+}) => {
+    return async () => {
+        if (!commentId) return;
+
+        try {
+            const response = await CommentService.unlike({
+                commentId,
+                type,
+            })
+
+            if (response?.data?.ok) {
+                return { ok: true }
+            }
+            return { ok: false }
+        } catch (error) {
+            return { ok: false }
+        }
+    }
+}
+
+export const actLikeCommentAsync = ({
+    commentId = null,
+    type = 1,
+}) => {
+    return async () => {
+        if (!commentId) return;
+
+        try {
+            const response = await CommentService.like({
+                commentId,
+                type,
+            })
+
+            if (response?.data?.ok) {
+                return { ok: true }
+            }
+            return { ok: false }
+        } catch (error) {
+            return { ok: false }
+        }
+    }
+}
+
 export const actGetListCommentsChildrenAsync = ({
     lessonId = null,
     parentId = null,
@@ -104,7 +150,7 @@ export const actPostNewCommentAsync = ({
     lessonId = null,
     parentId = null,
 }) => {
-    return async dispatch => {
+    return async () => {
         if (!content) return;
         if (!lessonId) return;
         if (!parentId) return;

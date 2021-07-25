@@ -56,6 +56,50 @@ export const CommentService = {
                 per_page: perPage
             }
         })
+    },
+
+    like({
+        commentId = null,
+        type = 1,
+    }) {
+        if (!commentId) return;
+
+        const token = localStorage.getItem('accessToken');
+
+        if (!token) return; 
+
+        return api.call().post('/comments/like/like', null, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).
+                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
+                concat(unescape(encodeURIComponent(type))).
+                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
+                concat(unescape(encodeURIComponent(token)))),
+            }
+        })
+    },
+
+    unlike({
+        commentId = null,
+        type = 1,
+    }) {
+        if (!commentId) return;
+
+        const token = localStorage.getItem('accessToken');
+
+        if (!token) return; 
+
+        return api.call().post('/comments/like/unlike', null, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).
+                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
+                concat(unescape(encodeURIComponent(type))).
+                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
+                concat(unescape(encodeURIComponent(token)))),
+            }
+        })
     }
     
 }

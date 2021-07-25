@@ -39,6 +39,8 @@ export default function ReplyZone({
         inputText.current.innerHTML = ''
       );
 
+      toggleReplyZone()
+
       dispatch(actGetListCommentsChildrenAsync({
         lessonId: comment.lesson_id,
         parentId: comment.id,
