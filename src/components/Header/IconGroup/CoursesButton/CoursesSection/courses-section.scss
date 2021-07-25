@@ -12,6 +12,7 @@
     transition: all 0.15s cubic-bezier(0.895, 0.03, 0.685, 0.22);
     transform: scale(0);
     transform-origin: 100% 0;
+    max-height: calc(100vh - 6rem);
 
     .courses-heading {
         padding: 1.5rem;
@@ -47,14 +48,24 @@
     }
 
     .scrollable-list {
-        max-height: 40rem;
+        max-height: calc(100vh - 15rem);
         overflow-x: hidden;
         overflow-y: auto;
 
-        .courses-list {
+        .courses-d-he-list {
             padding: 0 0 1.5rem 0;
 
-            .item {
+            .textLoad {
+                text-align: center;
+                font-size: 1.4rem;
+                color: #999;
+
+                .icon {
+                    margin-left: 1rem;
+                }
+            }
+
+            .d-he-item {
                 padding: 0.5rem 1.5rem;
                 transition: all 0.15s ease;
                 cursor: pointer;
@@ -81,6 +92,7 @@
                         margin-bottom: 0.5rem;
                         line-height: 1.333;
                         word-break: break-word;
+                        color: $dark;
                     }
 
                     .text {
@@ -114,6 +126,41 @@
             background-color: #ccc;
             outline: none;
             border-radius: 5px;
+        }
+    }
+
+    .courses-box1-footer {
+        text-align: center;
+        padding: 1rem 0 1.5rem 0;
+
+        .text {
+            color: $pink;
+            font-size: 1.3rem;
+            position: relative;
+            cursor: pointer;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 0;
+                height: 0.5px;
+                background-color: $pink;
+                transition: all 0.25s ease;
+            }
+
+            &:hover::after {
+                width: 100%;
+            }
+        }
+    }
+
+    .courses-box1-footer.disabled {
+        .text {
+            color: $light-gray;
+            cursor: default;
+            pointer-events: none;
         }
     }
 }

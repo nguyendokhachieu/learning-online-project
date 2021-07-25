@@ -98,5 +98,26 @@ export const CourseService = {
                 'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(token))),
             }
         })
+    },
+
+    getUserListRegisteredCourses({
+        page = 1,
+        perPage = 20,
+    }) 
+    {
+        const token = localStorage.getItem('accessToken');
+
+        if (!token) return;
+
+        return api.call().get('/courses/user/get/courses', {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(token))),
+            },
+            params: {
+                page,
+                per_page: perPage,
+            }
+        })
     }
 }

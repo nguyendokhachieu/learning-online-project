@@ -1,37 +1,87 @@
 import "./courses-section.scss";
 
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import CourseItem from "./CourseItem";
+import { actFetchUserRegisteredCoursesListAsync } from "../../../../../store/courses/actions";
+
 export default function CoursesSection({
   showCoursesBox = false,
+  closeCoursesBox = function(){},
 }) 
 {
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const { list, page, hasMore } = useSelector(state => state.courses.userRegisteredCoursesList);
+
+  function loadmore() {
+    if (loading) return;
+
+    setLoading(true);
+    dispatch(actFetchUserRegisteredCoursesListAsync({
+      page: page + 1,
+      perPage: 20,
+    })).then(() => {
+      setLoading(false);
+    })
+  }
+
+  useEffect(() => {
+    if (!showCoursesBox) return;
+    if (loading) return;
+
+    setLoading(true);
+    dispatch(actFetchUserRegisteredCoursesListAsync({
+      page: 1,
+      perPage: 20,
+    })).then(() => {
+      setLoading(false);
+    })
+
+  }, [showCoursesBox, list]);
+
   return (
     <section className={ showCoursesBox ? "courses-section-dropdown-box active" : "courses-section-dropdown-box" }>
       <div className="courses-heading">
         <h3 className="title">Khóa học của bạn</h3>
-        <div className="options">Xem tất cả</div>
+        {/* <div className="options">Xem tất cả</div> */}
       </div>
       <div className="scrollable-list">
-        <div className="courses-list">
-          <div className="item">
-            <div className="image-wrap">
-              <img
-                src="https://pdp.edu.vn/wp-content/uploads/2021/05/hinh-anh-avatar-de-thuong.jpg"
-                alt="avatar"
-                className="img"
-              />
-            </div>
-            <div className="body">
-              <h6 className="name">
-                Khóa học HTML, CSS cơ bảnSS cơ bảnSS cơ bản
-              </h6>
-              <div className="text">
-                Xây dựng web trong thực tế với HTML CSS
-              </div>
-              <div className="date-time">8 tháng trước</div>
-            </div>
-          </div>
+        <div className="courses-d-he-list">
+          {
+            loading && list.length === 0
+              ? <div className="textLoad">Đang tải <i className="fas fa-circle-notch icon fa-spin"></i></div>
+              : list.length !== 0 
+                ? list.map(course => {
+                  return (
+                    <CourseItem 
+                      course={ course } 
+                      key={ course.id } 
+                      closeCoursesBox={ () => closeCoursesBox() }
+                    />
+                  )
+                })
+                : <div className="textLoad">Bạn chưa tham gia khóa học nào</div>
+          }          
         </div>
       </div>
+      {
+        list.length >= 20
+          ? (
+            <div className={ loading ? "courses-box1-footer disabled" : "courses-box1-footer" }>
+              <span 
+                className="text"
+                onClick={ loadmore }
+              >
+                {
+                  loading ? "Đang tải" : "Hiển thị thêm"
+                }
+              </span>
+            </div>
+          )
+          : null
+      }
     </section>
   );
 }

@@ -75,6 +75,9 @@ export default function NotFound() {
                     <div className="n-f-heading">
                         <h1>Không tìm thấy trang bạn yêu cầu</h1>
                     </div>
+                    <div className="n-f-desc">
+                        <h4>Có thể trang đó không tồn tại do đường dẫn sai, hoặc bạn truy cập đến khóa học mình chưa đăng ký, hoặc có thể là do lỗi Internet</h4>
+                    </div>
                     <div className="buttons">
                         <Link to="/" className="btn btn-back">Quay về trang chủ</Link>
                     </div>

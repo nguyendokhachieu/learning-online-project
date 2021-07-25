@@ -30,7 +30,10 @@ export default function IconGroup() {
         >
           <i className="fas fa-bookmark icon"></i>
         </div>
-        <CoursesSection showCoursesBox={ showCoursesBox } />
+        <CoursesSection 
+          showCoursesBox={ showCoursesBox } 
+          closeCoursesBox={ () => setShowCoursesBox(false) }
+        />
       </div>
   );
 }

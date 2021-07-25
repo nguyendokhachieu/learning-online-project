@@ -5,6 +5,47 @@ export const ACT_FETCH_COURSE_IN_DETAIL = 'ACT_FETCH_COURSE_IN_DETAIL';
 export const ACT_REGISTER_NEW_COURSE = 'ACT_REGISTER_NEW_COURSE';
 export const ACT_FETCH_USER_REGISTERED_COURSE = 'ACT_FETCH_USER_REGISTERED_COURSE';
 export const ACT_UPDATE_CURRENT_LESSON_INFO = 'ACT_UPDATE_CURRENT_LESSON_INFO';
+export const ACT_FETCH_USER_REGISTERED_COURSES_LIST = 'ACT_FETCH_USER_REGISTERED_COURSES_LIST';
+
+export const actFetchUserRegisteredCoursesListAsync = ({
+    page = 1,
+    perPage = 20,
+}) => 
+{
+    return async dispatch => {
+        try {
+            const response = await CourseService.getUserListRegisteredCourses({
+                page,
+                perPage,
+            })
+
+            if (response.data.ok) {
+                dispatch(actFetchUserRegisteredCoursesList({
+                    page,
+                    perPage,
+                    list: response.data.data || []
+                }))
+            }
+        } catch (error) {
+            
+        }
+    }
+}
+
+const actFetchUserRegisteredCoursesList = ({
+    page,
+    perPage,
+    list
+}) => {
+    return {
+        type: ACT_FETCH_USER_REGISTERED_COURSES_LIST,
+        payload: {
+            page,
+            perPage,
+            list,
+        }
+    }
+}
 
 export const actUpdateCurrentLessonInfo = (courseDetail) => {
     return {

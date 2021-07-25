@@ -3,6 +3,7 @@ import {
     ACT_FETCH_COURSE_IN_DETAIL,
     ACT_FETCH_USER_REGISTERED_COURSE,
     ACT_UPDATE_CURRENT_LESSON_INFO,
+    ACT_FETCH_USER_REGISTERED_COURSES_LIST,
 } from "./actions";
 
 const initState = {
@@ -20,11 +21,35 @@ const initState = {
     currentLessonInfo: {
         current_lesson_id: null,
         current_video_id: null,
+    },
+
+    userRegisteredCoursesList: {
+        page: 1,
+        perPage: 20,
+        list: [],
+        hasMore: true,
     }
 };
 
 export const courseReducer = (state = initState, action) => {
     switch (action.type) {
+        case ACT_FETCH_USER_REGISTERED_COURSES_LIST:
+            return {
+                ...state,
+                userRegisteredCoursesList: {
+                    ...state.userRegisteredCoursesList,
+                    page: action.payload.page,
+                    perPage: action.payload.perPage,
+                    hasMore: action.payload.list.length === 0 ? false : true,
+                    list: action.payload.page === 1
+                            ? action.payload.list
+                            : [
+                                ...state.userRegisteredCoursesList.list,
+                                ...action.payload.list,
+                            ]
+                }
+            }
+
         case ACT_UPDATE_CURRENT_LESSON_INFO:
             return {
                 ...state,
