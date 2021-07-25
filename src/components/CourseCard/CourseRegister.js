@@ -54,7 +54,7 @@ export default function CourseRegister({
 		registeredCourseDetail && (
 			history.push(`/learn/${ registeredCourseDetail.current_lesson_id }`)
 		)
-	}, [registeredCourseDetail]);
+	}, [registeredCourseDetail, history]);
 
 	useEffect(() => {
 		async function check() {

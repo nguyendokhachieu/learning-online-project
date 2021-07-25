@@ -40,7 +40,7 @@ export default function DetailLessonPage() {
       }
     }
     
-  }, [registeredCourseDetail]);
+  }, [registeredCourseDetail, dispatch, history, params.lessonId]);
 
   useEffect(() => {
     if (history && history.action === 'PUSH') return;
@@ -59,7 +59,7 @@ export default function DetailLessonPage() {
         !response.ok && history.push('/not-found');
       });
     }
-  }, [dispatch, history]);
+  }, [dispatch, history, params]);
 
   if (!registeredCourseDetail) return null;
   if (!currentLessonInfo) return null;

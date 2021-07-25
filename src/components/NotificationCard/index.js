@@ -20,7 +20,7 @@ export default function NotificationCard({
                 dispatch(actHideNotificationCard());
             }, timeInMilliseconds)
         )
-    }, [showThis]);
+    }, [showThis, dispatch, timeInMilliseconds]);
 
     return (
         <div className={ show ? "notification-card active" : "notification-card" }>

@@ -55,12 +55,12 @@ export default function Adder() {
         </div>
         <div className="adder">
           <div
-            class="comment-input"
-            tabindex="0"
-            contenteditable="true"
+            className="comment-input"
+            tabIndex="0"
+            contentEditable="true"
             role="textbox"
             aria-multiline="true"
-            spellcheck="false"
+            spellCheck="false"
             placeholder="Nhập bình luận"
             ref={ inputText }
           ></div>

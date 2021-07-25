@@ -10,7 +10,7 @@ export default function TabsList({
 
   useEffect(() => {
     onSelectTab(tabSelected);
-  }, [tabSelected]);
+  }, [tabSelected, onSelectTab]);
 
   return (
     <ul className="nav-options">

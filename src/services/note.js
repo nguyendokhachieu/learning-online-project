@@ -15,11 +15,7 @@ export const NoteService = {
         }), {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(parsley)).
-                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
-                concat(unescape(encodeURIComponent(lessonId))).
-                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
-                concat(unescape(encodeURIComponent(token)))),
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(parsley)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(lessonId))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
             }
         })
     },
@@ -35,9 +31,7 @@ export const NoteService = {
         return api.call().get('/notes/get', {
             method: 'GET',
             headers: {
-                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(lessonId)).
-                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
-                concat(unescape(encodeURIComponent(token)))),
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(lessonId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
             },
             params: {
                 page,
@@ -55,9 +49,7 @@ export const NoteService = {
         return api.call().post('/notes/remove', null, {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(parsley)).
-                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
-                concat(unescape(encodeURIComponent(token)))),
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(parsley)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
             }
         })
     }

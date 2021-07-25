@@ -13,7 +13,7 @@ export default function CoursesSection({
 {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const { list, page, hasMore } = useSelector(state => state.courses.userRegisteredCoursesList);
+  const { list, page } = useSelector(state => state.courses.userRegisteredCoursesList);
 
   function loadmore() {
     if (loading) return;
@@ -39,7 +39,7 @@ export default function CoursesSection({
       setLoading(false);
     })
 
-  }, [showCoursesBox, list]);
+  }, [showCoursesBox, list, dispatch]);
 
   return (
     <section className={ showCoursesBox ? "courses-section-dropdown-box active" : "courses-section-dropdown-box" }>

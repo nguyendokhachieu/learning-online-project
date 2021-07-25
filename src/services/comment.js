@@ -20,11 +20,7 @@ export const CommentService = {
         }), {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(parentId)).
-                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
-                concat(unescape(encodeURIComponent(lessonId))).
-                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
-                concat(unescape(encodeURIComponent(token)))),
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(parentId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(lessonId))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
             }
         })
     },
@@ -45,11 +41,7 @@ export const CommentService = {
         return api.call().get('/comments/get', {
             method: 'GET',
             headers: {
-                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(parentId)).
-                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
-                concat(unescape(encodeURIComponent(lessonId))).
-                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
-                concat(unescape(encodeURIComponent(token)))),
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(parentId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(lessonId))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
             },
             params: {
                 page, 
@@ -71,11 +63,7 @@ export const CommentService = {
         return api.call().post('/comments/like/like', null, {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).
-                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
-                concat(unescape(encodeURIComponent(type))).
-                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
-                concat(unescape(encodeURIComponent(token)))),
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(type))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
             }
         })
     },
@@ -93,11 +81,7 @@ export const CommentService = {
         return api.call().post('/comments/like/unlike', null, {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).
-                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
-                concat(unescape(encodeURIComponent(type))).
-                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
-                concat(unescape(encodeURIComponent(token)))),
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(type))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
             }
         })
     },
@@ -114,9 +98,7 @@ export const CommentService = {
         return api.call().post('/comments/remove', null, {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).
-                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
-                concat(unescape(encodeURIComponent(token)))),
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
             }
         })
     }

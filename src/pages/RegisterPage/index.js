@@ -108,11 +108,11 @@ export default function RegisterPage() {
 
     useEffect(() => {
         facebookID !== 'null' && register(null);
-    }, [facebookID]);
+    }, [facebookID, register]);
 
     useEffect(() => {
         scrollToTop();
-    }, [])
+    }, [scrollToTop])
 
     if (accessToken) {
         history.push('/');

@@ -13,12 +13,7 @@ export const UserService = {
         return api.call().post('/users/register', null, {
             method: 'POST',
             headers: {
-                'Authorization': 'Basic ' + window.btoa(unescape(encodeURIComponent(fullname)).
-                concat('..').concat(unescape(encodeURIComponent(email))).
-                concat('..').concat(unescape(encodeURIComponent(password))).
-                concat('..').concat(unescape(encodeURIComponent(rePassword))).
-                concat('..').concat(unescape(encodeURIComponent(avatar))).
-                concat('..').concat(unescape(encodeURIComponent(facebookID)))),
+                'Authorization': 'Basic ' + window.btoa(unescape(encodeURIComponent(fullname)).concat('..').concat(unescape(encodeURIComponent(email))).concat('..').concat(unescape(encodeURIComponent(password))).concat('..').concat(unescape(encodeURIComponent(rePassword))).concat('..').concat(unescape(encodeURIComponent(avatar))).concat('..').concat(unescape(encodeURIComponent(facebookID)))),
             }
         })
     },
@@ -41,11 +36,7 @@ export const UserService = {
         return api.call().post('/users/login', null, {
             method: 'POST',
             headers: {
-                'Authorization': 'Basic ' + window.btoa(unescape(encodeURIComponent(email)).
-                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
-                concat(unescape(encodeURIComponent(password))).
-                concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').
-                concat(unescape(encodeURIComponent(facebookID)))),
+                'Authorization': 'Basic ' + window.btoa(unescape(encodeURIComponent(email)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(password))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(facebookID)))),
             }
         })
     },

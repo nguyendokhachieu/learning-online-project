@@ -44,7 +44,7 @@ export default function ListComments() {
       setLoading(false);
 
     })
-  }, [currentLessonInfo.current_lesson_id, user]);
+  }, [currentLessonInfo.current_lesson_id, user, dispatch]);
 
   return (
     <>

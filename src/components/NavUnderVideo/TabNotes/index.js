@@ -1,7 +1,7 @@
 import "./tab-note.scss";
 import 'draft-js/dist/Draft.css';
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { actShowNotificationCard } from "../../../store/modals/actions";

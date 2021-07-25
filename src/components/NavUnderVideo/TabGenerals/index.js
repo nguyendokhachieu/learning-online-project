@@ -6,7 +6,7 @@ import Paragraphs from "./Paragraphs";
 import CommentSection from "./CommentSection";
 
 export default function TabsGeneral() {
-  const { registeredCourseDetail, currentLessonInfo } = useSelector(state => state.courses);
+  const { registeredCourseDetail } = useSelector(state => state.courses);
 
   return (
     <div id="general" className="general">

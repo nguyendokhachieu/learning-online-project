@@ -19,7 +19,7 @@ export default function NoteItem({
 
         deleteBtn.addEventListener('click', handleDeleteNote);
         return () => deleteBtn.removeEventListener('click', handleDeleteNote);
-      }, []);
+      }, [dispatch, note.parsley]);
 
     if (!note) return null;
     

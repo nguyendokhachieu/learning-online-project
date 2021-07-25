@@ -89,11 +89,11 @@ export default function LoginPage() {
 
     useEffect(() => {
         facebookID !== 'null' && login(null);
-    }, [facebookID]);
+    }, [facebookID, login]);
 
     useEffect(() => {
         scrollToTop();
-    }, [])
+    }, [scrollToTop])
 
     if (accessToken) {
         history.push('/');

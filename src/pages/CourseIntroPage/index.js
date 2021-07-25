@@ -50,7 +50,7 @@ export default function CourseIntroPage() {
     });
 
     scrollToTop();
-  }, [courseId]);
+  }, [courseId, dispatch, history.action, scrollToTop]);
 
   if (loading) return null;
 
