@@ -5,7 +5,8 @@ import { actLikeCommentAsync, actUnlikeCommentAsync } from "../../../../../store
 import dayjs from "dayjs";
 
 export default function Reactions({
-  toggleReplyZone = function(){},
+  // toggleReplyZone = function(){},
+  changeNumberOfLikes = function(){},
   comment = null,
 }) 
 {
@@ -22,6 +23,7 @@ export default function Reactions({
 
     if (liked) {
       setLiked(false);
+      changeNumberOfLikes('-');
 
       dispatch(actUnlikeCommentAsync({
         commentId: comment.id,
@@ -36,6 +38,7 @@ export default function Reactions({
 
     } else {
       setLiked(true);
+      changeNumberOfLikes('+');
 
       dispatch(actLikeCommentAsync({
         commentId: comment.id,

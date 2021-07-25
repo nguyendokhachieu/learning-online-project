@@ -12,6 +12,7 @@ export default function CommentItem({
 }) 
 {
   const [showReplyZone, setShowReplyZone] = useState(false);
+  const [changeNumberOfLikes, setChangeNumberOfLikes] = useState('');
 
   if (!comment) return null;
 
@@ -19,10 +20,14 @@ export default function CommentItem({
     <section className="comment-item">
       <div className="comment-top">
         <Avatar comment={ comment } />
-        <BodyContent comment={ comment } />
+        <BodyContent 
+          comment={ comment } 
+          changeNumberOfLikes={ changeNumberOfLikes }
+        />
       </div>
       <Reactions 
         toggleReplyZone={ () => setShowReplyZone(!showReplyZone) } 
+        changeNumberOfLikes={ sign => setChangeNumberOfLikes(sign) }
         comment={ comment }
       />
       {

@@ -6,6 +6,7 @@ import { actLikeCommentAsync, actUnlikeCommentAsync } from "../../../../../store
 
 export default function Reactions({
   toggleReplyZone = function(){},
+  changeNumberOfLikes = function(){},
   comment = null,
 }) 
 {
@@ -22,6 +23,7 @@ export default function Reactions({
 
     if (liked) {
       setLiked(false);
+      changeNumberOfLikes('-');
 
       dispatch(actUnlikeCommentAsync({
         commentId: comment.id,
@@ -36,7 +38,8 @@ export default function Reactions({
 
     } else {
       setLiked(true);
-
+      changeNumberOfLikes('+');
+      
       dispatch(actLikeCommentAsync({
         commentId: comment.id,
         type: 1,

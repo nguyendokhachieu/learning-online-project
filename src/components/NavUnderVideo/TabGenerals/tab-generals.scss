@@ -149,6 +149,7 @@
                         background-color: $background-comment-item;
                         padding: 1rem 2rem 1rem 1.5rem;
                         border-radius: 2rem;
+                        position: relative;
 
                         .commentator-name {
                             width: 100%;
@@ -182,6 +183,30 @@
                             div {
                                 word-break: inherit;
                                 line-height: inherit;
+                            }
+                        }
+
+                        .reactions-quantity {
+                            position: absolute;
+                            bottom: -1rem;
+                            right: 2rem;
+                            background-color: #fff;
+                            border-radius: 10px;
+                            box-shadow: 0 1px 2px 0 #eee;
+
+                            .count {
+                                padding: 0.25rem 1rem;
+                                font-size: 1.3rem;
+                                
+                                .text {
+                                    font-weight: 500;
+                                    color: #999;
+                                }
+
+                                .icon {
+                                    color: #999;
+                                    margin-right: 0.5rem;
+                                }
                             }
                         }
                     }
