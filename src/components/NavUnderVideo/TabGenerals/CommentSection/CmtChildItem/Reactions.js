@@ -14,6 +14,8 @@ export default function Reactions({
 {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.users.currentUser);
+  const { currentLessonInfo } = useSelector(state => state.courses);
+
   const [liked, setLiked] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -29,6 +31,7 @@ export default function Reactions({
 
       dispatch(actUnlikeCommentAsync({
         commentId: comment.id,
+        lessonId: currentLessonInfo.current_lesson_id,
         type: 1,
       })).then(response => {
         setLoading(false);
@@ -44,6 +47,7 @@ export default function Reactions({
 
       dispatch(actLikeCommentAsync({
         commentId: comment.id,
+        lessonId: currentLessonInfo.current_lesson_id,
         type: 1,
       })).then(response => {
         setLoading(false);

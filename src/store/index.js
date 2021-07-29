@@ -7,6 +7,7 @@ import { modalsReducer } from './modals/reducer';
 import { usersReducer } from './users/reducer';
 import { notesReducer } from './notes/reducer';
 import { commentsReducer } from './comments/reducer';
+import { notificationsReducer } from './notifications/reducer';
 
 const rootReducer = combineReducers({
     courses: courseReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
     users: usersReducer,
     notes: notesReducer,
     comments: commentsReducer,
+    notifications: notificationsReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk, logger));

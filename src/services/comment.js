@@ -52,36 +52,48 @@ export const CommentService = {
 
     like({
         commentId = null,
+        lessonId = null,
         type = 1,
     }) {
         if (!commentId) return;
-
+        if (!lessonId) return;
+        
         const token = localStorage.getItem('accessToken');
-
+        
         if (!token) return; 
 
         return api.call().post('/comments/like/like', null, {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(type))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(type))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(lessonId))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
+
+                // 'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(type))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').unescape(encodeURIComponent(lessonId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
+                // 'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(type))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').unescape(encodeURIComponent(lessonId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
             }
         })
     },
 
     unlike({
         commentId = null,
+        lessonId = null,
         type = 1,
     }) {
         if (!commentId) return;
+        if (!lessonId) return;
+
 
         const token = localStorage.getItem('accessToken');
-
+        
         if (!token) return; 
 
         return api.call().post('/comments/like/unlike', null, {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(type))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(type))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(lessonId))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
+
+                // 'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(type))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
+
+                // 'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(commentId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(type))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').unescape(encodeURIComponent(lessonId)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
             }
         })
     },

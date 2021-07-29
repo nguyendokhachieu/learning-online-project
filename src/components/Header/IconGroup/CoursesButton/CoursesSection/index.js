@@ -13,10 +13,11 @@ export default function CoursesSection({
 {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const { list, page } = useSelector(state => state.courses.userRegisteredCoursesList);
+  const { list, page, hasMore } = useSelector(state => state.courses.userRegisteredCoursesList);
 
   function loadmore() {
     if (loading) return;
+    if (!hasMore) return;
 
     setLoading(true);
     dispatch(actFetchUserRegisteredCoursesListAsync({
@@ -67,7 +68,7 @@ export default function CoursesSection({
         </div>
       </div>
       {
-        list.length >= 20
+        list.length >= 20 && hasMore
           ? (
             <div className={ loading ? "courses-box1-footer disabled" : "courses-box1-footer" }>
               <span 

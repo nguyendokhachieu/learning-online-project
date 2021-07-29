@@ -72,14 +72,17 @@ const actDeleteParentComment = ({ commentId }) => {
 
 export const actUnlikeCommentAsync = ({
     commentId = null,
+    lessonId = null,
     type = 1,
 }) => {
     return async () => {
         if (!commentId) return;
+        if (!lessonId) return;
 
         try {
             const response = await CommentService.unlike({
                 commentId,
+                lessonId,
                 type,
             })
 
@@ -95,14 +98,17 @@ export const actUnlikeCommentAsync = ({
 
 export const actLikeCommentAsync = ({
     commentId = null,
+    lessonId = null,
     type = 1,
 }) => {
     return async () => {
         if (!commentId) return;
+        if (!lessonId) return;
 
         try {
             const response = await CommentService.like({
                 commentId,
+                lessonId,
                 type,
             })
 

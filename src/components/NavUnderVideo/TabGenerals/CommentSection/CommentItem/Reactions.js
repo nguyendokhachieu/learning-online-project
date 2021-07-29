@@ -14,21 +14,29 @@ export default function Reactions({
 {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.users.currentUser);
+  const { currentLessonInfo } = useSelector(state => state.courses);
+
   const [liked, setLiked] = useState(false);
   const [loading, setLoading] = useState(false);
 
   function likeComment() {
     if (loading) return;
     if (!comment) return;
+    if (!currentLessonInfo.current_lesson_id) return;
 
     setLoading(true);
 
+    // console.log(comment.id);
+    // console.log(currentLessonInfo.current_lesson_id);
+
     if (liked) {
+      // console.log('liked');
       setLiked(false);
       changeNumberOfLikes('-');
 
       dispatch(actUnlikeCommentAsync({
         commentId: comment.id,
+        lessonId: currentLessonInfo.current_lesson_id,
         type: 1,
       })).then(response => {
         setLoading(false);
@@ -39,11 +47,13 @@ export default function Reactions({
       })
 
     } else {
+      // console.log('unliked');
       setLiked(true);
       changeNumberOfLikes('+');
       
       dispatch(actLikeCommentAsync({
         commentId: comment.id,
+        lessonId: currentLessonInfo.current_lesson_id,
         type: 1,
       })).then(response => {
         setLoading(false);
