@@ -2,6 +2,24 @@ import { NotificationService } from "../../services/notification";
 
 export const ACT_FETCH_USER_NOTIFICATIONS = 'ACT_FETCH_USER_NOTIFICATIONS';
 
+export const actReadNotificationAsync = ({
+    allOrSingle = 'all',
+    notificationId = 0,
+}) => {
+    return async () => {
+        try {
+            const response = await NotificationService.read({
+                allOrSingle,
+                notificationId,
+            })
+
+            console.log(response);
+        } catch (error) {
+            
+        }
+    }
+}
+
 export const actFetchUserNotificationsAsync = ({
     page = 1,
     perPage = 10,

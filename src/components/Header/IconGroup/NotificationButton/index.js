@@ -32,7 +32,10 @@ export default function NotificationButton() {
       >
         <i className="fas fa-bell icon"></i>
       </div>
-      <NotificationsSection showNotificationBox={ showNotificationBox } />
+      <NotificationsSection 
+        showNotificationBox={ showNotificationBox } 
+        onSetCloseNotificationBox={ () => setShowNotificationBox(false) }
+      />
     </div>
   );
 }

@@ -19,5 +19,21 @@ export const NotificationService = {
                 'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(token))),
             }
         })
+    },
+
+    read({
+        allOrSingle,
+        notificationId,
+    }) 
+    {
+        const token = localStorage.getItem('accessToken');
+
+        if (!token) return;
+
+        return api.call().post('notifications/actions/read', null, {
+            headers: {
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(allOrSingle)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(notificationId))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
+            }
+        })
     }
 }

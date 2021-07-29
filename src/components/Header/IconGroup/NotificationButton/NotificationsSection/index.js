@@ -3,17 +3,30 @@ import "./notifications-section.scss";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { actFetchUserNotificationsAsync } from "../../../../../store/notifications/actions";
+import { 
+  actFetchUserNotificationsAsync ,
+  actReadNotificationAsync,
+} from "../../../../../store/notifications/actions";
 
 import NotificationsItem from "./NotificationItem";
 
 export default function NotificationsSection({
   showNotificationBox = false,
+  onSetCloseNotificationBox = function(){},
 }) 
 {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [readAllNotifications, setReadAllNotifications] = useState(false);
   const { list, page, hasMore } = useSelector(state => state.notifications.userNotifications);
+
+  function readNotifications() {
+    if (loading) return;
+
+    setReadAllNotifications(true);
+    setLoading(true);
+    dispatch(actReadNotificationAsync({ allOrSingle: 'all' })).then(() => setLoading(false))
+  }
 
   function loadmore() {
     if (loading) return;
@@ -52,7 +65,12 @@ export default function NotificationsSection({
     >
       <div className="notifications-heading">
         <h3 className="title">Thông báo</h3>
-        <div className="options">Đánh dấu tất cả là đã đọc</div>
+        <div 
+          className="options"
+          onClick={ readNotifications }
+        >
+          Đánh dấu tất cả là đã đọc
+        </div>
       </div>
       <div className="scrollable-list">
         <div className="notifications-list">
@@ -61,7 +79,14 @@ export default function NotificationsSection({
               ? <div className="textLoad">Đang tải <i className="fas fa-circle-notch icon fa-spin"></i></div>
               : list.length !== 0
                 ? list.map(item => {
-                  return <NotificationsItem n={ item } key={ item.id } />
+                  return (
+                    <NotificationsItem 
+                      n={ item } 
+                      key={ item.id } 
+                      onSetCloseNotificationBox={ () => onSetCloseNotificationBox() } 
+                      readAllNotifications={ readAllNotifications }
+                    />
+                  )
                 })
                 : <div className="textLoad">Bạn chưa có thông báo nào!</div>
           }
