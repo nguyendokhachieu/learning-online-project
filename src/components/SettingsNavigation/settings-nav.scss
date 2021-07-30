@@ -1,0 +1,74 @@
+@import "../../assets/scss/variables";
+
+.settings-side-nav-options {
+    width: 300px;
+    min-height: 499px;
+    padding: 0 1px 0 0;
+    border: 0.5px solid $light-pink;
+    border-left: 0;
+    border-top: 0;
+    border-bottom: 0;
+    overflow-y: hidden;
+    overflow-x: auto;
+
+    @media screen and (max-width: 992px) {
+        border: 0;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        min-height: auto;
+    }
+
+    .settings-options-list {
+
+        .settings-se-item {
+
+            .settings-nav-link {
+                display: inline-block;
+                width: 100%;
+                padding: 1.5rem;
+                font-size: 1.45rem;
+                color: $gray-dark;
+                font-weight: 500;
+                border-radius: 10px;
+                transition: all 0.15s ease;
+                white-space: nowrap;
+
+                &:hover {
+                    background-color: #eee;
+                }
+
+                &:active {
+                    background-color: #ccc;
+                }
+            }
+        }
+
+        .settings-se-item.active {
+            .settings-nav-link {
+                background-color: #eee;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            display: flex;
+
+        }
+    }
+
+        &::-webkit-scrollbar {
+            height: 2px;
+        }
+           
+        &::-webkit-scrollbar-track {
+            border-radius: 5px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            outline: none;
+            border-radius: 5px;
+        }
+    
+}

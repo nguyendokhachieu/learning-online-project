@@ -10,6 +10,7 @@ import CoursesPage from "./pages/CoursesPage";
 import CourseIntroPage from "./pages/CourseIntroPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import SettingsPage from "./pages/SettingsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 import ModalLoadingFullScreen from "./pages/ModalLoadingFullScreen";
@@ -54,6 +55,9 @@ function App() {
       }
       <section className="main">
         <Switch>
+          <Route path="/settings">
+            <SettingsPage />
+          </Route>
           <Route path="/learn/:lessonId">
             <DetailLessonPage />
           </Route>
