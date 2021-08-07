@@ -38,7 +38,10 @@ export default function IconGroup() {
           className="img"
         />
       </div>
-      <UserSection showUserBox={ showUserBox } />
+      <UserSection 
+        showUserBox={ showUserBox } 
+        onCloseUserBox={ () => setShowUserBox(false) } 
+      />
     </div>
   );
 }

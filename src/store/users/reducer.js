@@ -19,6 +19,7 @@ export const usersReducer = (state = initState, action) => {
             return {
                 ...state,
                 currentUser: {
+                    ...state.currentUser,
                     accessToken: action.payload.accessToken,
                     user: action.payload.user,
                 }
@@ -30,6 +31,7 @@ export const usersReducer = (state = initState, action) => {
             return {
                 ...state,
                 currentUser: {
+                    ...state.currentUser,
                     accessToken: action.payload.accessToken,
                     user: action.payload.user,
                 }
@@ -41,6 +43,7 @@ export const usersReducer = (state = initState, action) => {
             return {
                 ...state,
                 currentUser: {
+                    ...state.currentUser,
                     accessToken: action.payload.accessToken,
                     user: action.payload.user,
                 }

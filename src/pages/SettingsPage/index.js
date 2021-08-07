@@ -1,7 +1,8 @@
 import "./settings-page.scss";
 
-import { Switch, Route, useHistory } from "react-router";
+import { Switch, Route } from "react-router";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { useWindowSize } from "../../hooks/useWindowSize";
 
@@ -9,9 +10,13 @@ import SettingsNavigation from "../../components/SettingsNavigation";
 import AccountInfo from "../../components/AccountInfo";
 import ChangePassword from "../../components/ChangePassword";
 import UploadAvatar from "../../components/UploadAvatar";
+import NotFoundPage from "../NotFoundPage";
 
 export default function SettingsPage() {
     const { width } = useWindowSize();
+    const { user } = useSelector(state => state.users.currentUser);
+
+    if (!user) return <NotFoundPage />;
 
     return (
         <div className="settings-a-z-zone">

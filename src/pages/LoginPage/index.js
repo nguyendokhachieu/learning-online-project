@@ -32,7 +32,6 @@ export default function LoginPage() {
     const [error, setError] = useState('');
 
     function responseFacebook(response) {
-        console.log(response);
         if (response && response.email) {
             setEmail(response.email);
             setFacebookID(response.userID || response.id || 'null');

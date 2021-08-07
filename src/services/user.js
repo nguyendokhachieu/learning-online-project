@@ -40,4 +40,35 @@ export const UserService = {
             }
         })
     },
+
+    changePassword({
+        oldPassword,
+        newPassword,
+        reNewPassword,
+    }) 
+    {
+        const token = localStorage.getItem('accessToken');
+
+        if (!token) return;
+
+        return api.call().post('/users/actions/chpwd', null, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Basic ' + window.btoa(unescape(encodeURIComponent(oldPassword)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(newPassword))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(reNewPassword))).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
+            }
+        })
+    },
+
+    checkIfUserCanChangePassword() {
+        const token = localStorage.getItem('accessToken');
+
+        if (!token) return;
+
+        return api.call().post('/users/actions/pwdchangable', null, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Basic ' + window.btoa(unescape(encodeURIComponent(token))),
+            }
+        })
+    }
 }

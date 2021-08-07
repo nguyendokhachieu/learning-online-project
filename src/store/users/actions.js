@@ -1,8 +1,55 @@
 import { UserService } from "../../services/user";
+import { actShowLoadingFullscreen, actHideLoadingFullscreen } from "../modals/actions";
 
 export const ACT_REGISTER = 'ACT_REGISTER';
 export const ACT_AUTHORIZATION = 'ACT_AUTHORIZATION';
 export const ACT_LOGIN = 'ACT_LOGIN';
+
+export const actChangePasswordAsync = ({
+    oldPassword = null,
+    newPassword = null,
+    reNewPassword = null,
+}) => {
+    return async dispatch => {
+        if (!oldPassword) return;
+        if (!newPassword) return;
+        if (!reNewPassword) return;
+
+        try {
+            const response = await UserService.changePassword({
+                oldPassword,
+                newPassword,
+                reNewPassword,
+            })
+
+            return {
+                ok: response?.data.ok || false,
+                message: response?.data.message,
+            }
+        } catch (error) {
+            return {
+                ok: false,
+                message: '',
+            }
+        }
+    }
+}
+
+export const actCheckUserCanChangePasswordAsync = () => {
+    return async () => {
+        try {
+            const response = await UserService.checkIfUserCanChangePassword();
+
+            if (response?.data?.pwdchangable) {
+                return { ok: true }
+            }
+            
+            return { ok: false }
+        } catch (error) {
+            return { ok: false }
+        }
+    }
+}
 
 export const actLoginAsync = ({
     email = null,
@@ -13,7 +60,7 @@ export const actLoginAsync = ({
     return async dispatch => {
         if (!email) return;
 
-        try {
+        try {            
             const response = await UserService.login({
                 email,
                 password,
@@ -65,6 +112,8 @@ export const actAuthorizationAsync = () => {
 
             if (!token) return;
 
+            dispatch(actShowLoadingFullscreen());
+
             const response = await UserService.auth(token);
 
             if (response && response.data.ok) {
@@ -73,15 +122,21 @@ export const actAuthorizationAsync = () => {
                     user: response.data.data.user || null,
                 }))
 
+                dispatch(actHideLoadingFullscreen());
+                
                 return {
                     ok: true,
                 }
             }
 
+            dispatch(actHideLoadingFullscreen());
+
             return {
                 ok: false,
             }
         } catch (error) {
+            dispatch(actHideLoadingFullscreen());
+
             return {
                 ok: false,
             }

@@ -1,7 +1,7 @@
 import "./assets/scss/app.scss";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -22,6 +22,7 @@ import { useEffect, useState } from "react";
 import { actAuthorizationAsync } from "./store/users/actions";
 
 function App() {
+  const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
@@ -42,7 +43,18 @@ function App() {
     if (loading) return;
 
     setLoading(true);
-    dispatch(actAuthorizationAsync()).finally(() => setLoading(false));
+    dispatch(actAuthorizationAsync()).then(response => {
+      setLoading(false)
+
+      // if (response?.ok) return;
+
+      // if (!response?.ok) {
+      //   localStorage.removeItem('accessToken');
+      //   history.push('/');
+      // }
+
+      // history.push('/');
+    });
   }, [dispatch]);
 
   return (

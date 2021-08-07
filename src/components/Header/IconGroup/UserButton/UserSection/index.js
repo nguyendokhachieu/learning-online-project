@@ -1,10 +1,12 @@
 import "./user-section.scss";
 
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { actShowLogoutConfirmationModal } from "../../../../../store/modals/actions";
 
 export default function UserSection({
   showUserBox = false,
+  onCloseUserBox = function(){},
 }) 
 {
   const dispatch = useDispatch();
@@ -16,10 +18,10 @@ export default function UserSection({
         <h3 className="title">{ user && user.name }</h3>
       </div>
       <div className="user-list">
-        <div className="user-item">
+        <Link to="/settings/account" className="user-item" onClick={ () => onCloseUserBox() }>
           <i className="fas fa-cog icon"></i>
           <span className="text">Cài đặt</span>
-        </div>
+        </Link>
         <div 
           className="user-item" 
           onClick={ () => dispatch(actShowLogoutConfirmationModal()) }
