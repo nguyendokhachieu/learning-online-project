@@ -1,10 +1,13 @@
 import "./settings-page.scss";
 
+import { useEffect, useState } from "react";
 import { Switch, Route } from "react-router";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useWindowSize } from "../../hooks/useWindowSize";
+import { actFetchUserDetailInfoAsync } from "../../store/users/actions";
+import { actHideLoadingFullscreen, actShowLoadingFullscreen } from "../../store/modals/actions";
 
 import SettingsNavigation from "../../components/SettingsNavigation";
 import AccountInfo from "../../components/AccountInfo";
@@ -13,8 +16,21 @@ import UploadAvatar from "../../components/UploadAvatar";
 import NotFoundPage from "../NotFoundPage";
 
 export default function SettingsPage() {
+    const dispatch = useDispatch();
     const { width } = useWindowSize();
     const { user } = useSelector(state => state.users.currentUser);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        if (loading) return;
+
+        dispatch(actShowLoadingFullscreen());
+        setLoading(true);
+        dispatch(actFetchUserDetailInfoAsync()).then(() => {
+            setLoading(false);
+            dispatch(actHideLoadingFullscreen());
+        });
+    }, []);
 
     if (!user) return <NotFoundPage />;
 

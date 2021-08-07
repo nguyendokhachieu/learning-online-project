@@ -59,15 +59,15 @@ export const UserService = {
         })
     },
 
-    checkIfUserCanChangePassword() {
+    getUserDetailInfo() {
         const token = localStorage.getItem('accessToken');
 
         if (!token) return;
 
-        return api.call().post('/users/actions/pwdchangable', null, {
-            method: 'POST',
+        return api.call().get('/users/actions/get', {
+            method: 'GET',
             headers: {
-                'Authorization': 'Basic ' + window.btoa(unescape(encodeURIComponent(token))),
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(token))),
             }
         })
     }

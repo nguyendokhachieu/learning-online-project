@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
 import { actShowNotificationCard } from "../../store/modals/actions";
 
-import { actChangePasswordAsync, actCheckUserCanChangePasswordAsync } from "../../store/users/actions";
+import { actChangePasswordAsync } from "../../store/users/actions";
 
 export default function ChangePassword() {
   const dispatch = useDispatch();
   const oldPasswordRef = useRef();
-  const history = useHistory();
+  const userDetail = useSelector(state => state.users.userDetail);
   const { user } = useSelector(state => state.users.currentUser);
 
   const [loading, setLoading] = useState(false);
@@ -85,14 +84,12 @@ export default function ChangePassword() {
   }
 
   useEffect(() => {
-    if (loading) return;
-
-    setLoading(true);
-    dispatch(actCheckUserCanChangePasswordAsync()).then(response => {
-      setLoading(false);
-      setCanChangePass(response?.ok || false);
-    });
-  }, []);
+    if (userDetail?.soc === 0) {
+      setCanChangePass(true);
+    } else {
+      setCanChangePass(false);
+    }
+  }, [userDetail]);
 
   if (!user) return null;
 

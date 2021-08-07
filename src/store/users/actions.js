@@ -4,6 +4,30 @@ import { actShowLoadingFullscreen, actHideLoadingFullscreen } from "../modals/ac
 export const ACT_REGISTER = 'ACT_REGISTER';
 export const ACT_AUTHORIZATION = 'ACT_AUTHORIZATION';
 export const ACT_LOGIN = 'ACT_LOGIN';
+export const ACT_FETCH_USER_DETAIL_INFO = 'ACT_FETCH_USER_DETAIL_INFO';
+
+export const actFetchUserDetailInfoAsync = () => {
+    return async dispatch => {
+        try {
+            const response = await UserService.getUserDetailInfo();
+
+            if (response?.data.ok) {
+                dispatch(actFetchUserDetailInfo(response.data.data || {}))
+            }
+        } catch (error) {
+            
+        }
+    }
+}
+
+const actFetchUserDetailInfo = (data) => {
+    return {
+        type: ACT_FETCH_USER_DETAIL_INFO,
+        payload: {
+            data
+        }
+    }
+}
 
 export const actChangePasswordAsync = ({
     oldPassword = null,
@@ -31,22 +55,6 @@ export const actChangePasswordAsync = ({
                 ok: false,
                 message: '',
             }
-        }
-    }
-}
-
-export const actCheckUserCanChangePasswordAsync = () => {
-    return async () => {
-        try {
-            const response = await UserService.checkIfUserCanChangePassword();
-
-            if (response?.data?.pwdchangable) {
-                return { ok: true }
-            }
-            
-            return { ok: false }
-        } catch (error) {
-            return { ok: false }
         }
     }
 }
