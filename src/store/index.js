@@ -8,6 +8,7 @@ import { usersReducer } from './users/reducer';
 import { notesReducer } from './notes/reducer';
 import { commentsReducer } from './comments/reducer';
 import { notificationsReducer } from './notifications/reducer';
+import { categoriesReducer } from './categories/reducer';
 
 const rootReducer = combineReducers({
     courses: courseReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     notes: notesReducer,
     comments: commentsReducer,
     notifications: notificationsReducer,
+    categories: categoriesReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk, logger));

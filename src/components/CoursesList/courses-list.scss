@@ -6,6 +6,38 @@
     flex-wrap: wrap;
     margin-left: -0.75rem;
     margin-right: -0.75rem;
+
+    .courses-list-empty {
+        width: 100%;
+        text-align: center;
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+        color: #999;
+        line-height: 2;
+    }
+}
+
+.mb-9 {
+    margin-bottom: 9rem !important;
+}
+
+.highlight {
+    background-color: $light-pink;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    color: $pink;
+    white-space: nowrap;
+}
+
+.link-to-all-courses {
+    color: $primary;
+    padding: 1rem 2rem;
+    transition: all 0.15s ease;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: #eee;
+    }
 }
 
 .load-more-courses {

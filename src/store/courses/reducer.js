@@ -4,6 +4,7 @@ import {
     ACT_FETCH_USER_REGISTERED_COURSE,
     ACT_UPDATE_CURRENT_LESSON_INFO,
     ACT_FETCH_USER_REGISTERED_COURSES_LIST,
+    ACT_FETCH_LIST_COURSES_BY_CATEGORY_SLUG,
 } from "./actions";
 
 const initState = {
@@ -12,6 +13,14 @@ const initState = {
         page: 1,
         perPage: 10,
         hasMore: true,
+    },
+
+    coursesByCategorySlug: {
+        list: [],
+        page: 1,
+        perPage: 10,
+        hasMore: true,
+        categorySlug: 'tat-ca-khoa-hoc',
     },
 
     courseDetail: null,
@@ -33,6 +42,23 @@ const initState = {
 
 export const courseReducer = (state = initState, action) => {
     switch (action.type) {
+        case ACT_FETCH_LIST_COURSES_BY_CATEGORY_SLUG:
+            return {
+                ...state,
+                coursesByCategorySlug: {
+                    ...state.coursesByCategorySlug,
+                    page: action.payload.page,
+                    perPage: action.payload.perPage,
+                    hasMore: action.payload.list.length !== 0 ? true : false,
+                    categorySlug: action.payload.categorySlug,
+                    list: action.payload.page === 1
+                        ? action.payload.list
+                        : [
+                            ...state.coursesByCategorySlug.list,
+                            ...action.payload.list,
+                        ]
+                }
+            }
         case ACT_FETCH_USER_REGISTERED_COURSES_LIST:
             return {
                 ...state,

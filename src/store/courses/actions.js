@@ -6,6 +6,53 @@ export const ACT_REGISTER_NEW_COURSE = 'ACT_REGISTER_NEW_COURSE';
 export const ACT_FETCH_USER_REGISTERED_COURSE = 'ACT_FETCH_USER_REGISTERED_COURSE';
 export const ACT_UPDATE_CURRENT_LESSON_INFO = 'ACT_UPDATE_CURRENT_LESSON_INFO';
 export const ACT_FETCH_USER_REGISTERED_COURSES_LIST = 'ACT_FETCH_USER_REGISTERED_COURSES_LIST';
+export const ACT_FETCH_LIST_COURSES_BY_CATEGORY_SLUG = 'ACT_FETCH_LIST_COURSES_BY_CATEGORY_SLUG';
+
+export const actFetchListCoursesByCategorySlugAsync = ({
+    page = 1,
+    perPage = 6, 
+    categorySlug = null,
+}) => {
+    return async dispatch => {
+        if (!categorySlug) return;
+
+        try {
+            const response = await CourseService.getListCourseByCategorySlug({
+                page,
+                perPage,
+                categorySlug,
+            });
+
+            if (response?.data.ok) {
+                dispatch(actFetchListCoursesByCategorySlug({
+                    page,
+                    perPage,
+                    list: response?.data.data || [],
+                    categorySlug: response?.data.category_slug || 'tat-ca-khoa-hoc',
+                }))
+            }
+        } catch (error) {
+            
+        }
+    }
+}
+
+const actFetchListCoursesByCategorySlug = ({
+    page,
+    perPage,
+    list,
+    categorySlug,
+}) => {
+    return {
+        type: ACT_FETCH_LIST_COURSES_BY_CATEGORY_SLUG,
+        payload: {
+            page,
+            perPage,
+            list,
+            categorySlug,
+        }
+    }
+}
 
 export const actFetchUserRegisteredCoursesListAsync = ({
     page = 1,

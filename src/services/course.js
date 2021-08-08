@@ -1,6 +1,30 @@
 import { api } from "./api";
 
 export const CourseService = {
+
+    getListCourseByCategorySlug({
+        page = 1,
+        perPage = 10,
+        categorySlug = null,
+    }) 
+    {
+        const token = localStorage.getItem('accessToken');
+
+        if (!token) return;
+        if (!categorySlug) return;
+
+        return api.call().get('/courses/category/get', {
+            params: {
+                page,
+                per_page: perPage,
+            },
+            method: 'GET',
+            headers: {
+                'Authorization': 'Basic ' + window.btoa(unescape(encodeURIComponent(categorySlug)).concat('.tqhwiesr-tiysu-icoopnansedcftgihojnk-zsxtcrvibnngm.').concat(unescape(encodeURIComponent(token)))),
+            },
+        })
+    },
+
     getListCourse({
         page = 1,
         perPage = 10,

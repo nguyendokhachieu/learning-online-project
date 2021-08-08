@@ -1,10 +1,14 @@
 import "./navigation.scss";
 
+import { Link, useLocation } from "react-router-dom";
+
 export default function Navigation({
   showSideNav = false,
   onHideSideNav = function() {},
 }) 
 {
+  const location = useLocation();
+
   return (
     <div className={ showSideNav ? "header-nav active" : "header-nav" }>
       <ul className="nav-list">
@@ -17,15 +21,15 @@ export default function Navigation({
             <i className="fas fa-times icon"></i>
           </div>
         </li>
-        <li className="item active">
-          <a href="/" className="link">
+        <li className={ location.pathname === '/' ? "item active" : "item" }>
+          <Link to="/" className="link">
             Trang chủ
-          </a>
+          </Link>
         </li>
-        <li className="item">
-          <a href="/" className="link">
+        <li className={ location.pathname === '/courses' ? "item active" : "item" }>
+          <Link to="/courses" className="link">
             Khóa học
-          </a>
+          </Link>
         </li>
       </ul>
     </div>

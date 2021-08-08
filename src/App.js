@@ -86,7 +86,7 @@ function App() {
             <RegisterPage />
           </Route>
           <Route exact path="/">
-            <CoursesPage />
+            {/* <CoursesPage /> */}
           </Route>
           <Route>
             <NotFoundPage />
