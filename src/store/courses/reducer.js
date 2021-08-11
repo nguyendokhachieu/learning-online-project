@@ -5,6 +5,7 @@ import {
     ACT_UPDATE_CURRENT_LESSON_INFO,
     ACT_FETCH_USER_REGISTERED_COURSES_LIST,
     ACT_FETCH_LIST_COURSES_BY_CATEGORY_SLUG,
+    ACT_SEARCH_COURSES,
 } from "./actions";
 
 const initState = {
@@ -37,11 +38,35 @@ const initState = {
         perPage: 20,
         list: [],
         hasMore: true,
+    },
+
+    searchCourses: {
+        list: [],
+        page: 1,
+        perPage: 6,
+        hasMore: true,
     }
 };
 
 export const courseReducer = (state = initState, action) => {
     switch (action.type) {
+        case ACT_SEARCH_COURSES:
+            return {
+                ...state,
+                searchCourses: {
+                    ...state.searchCourses,
+                    page: action.payload.page,
+                    perPage: action.payload.perPage,
+                    hasMore: action.payload.list.length === 0 ? false : true,
+                    list: action.payload.page === 1
+                            ? action.payload.list
+                            : [
+                                ...state.searchCourses.list,
+                                ...action.payload.list,
+                            ]
+                }
+            }
+
         case ACT_FETCH_LIST_COURSES_BY_CATEGORY_SLUG:
             return {
                 ...state,

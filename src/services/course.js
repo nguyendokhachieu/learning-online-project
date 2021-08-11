@@ -2,6 +2,28 @@ import { api } from "./api";
 
 export const CourseService = {
 
+    searchCourses({
+        page,
+        perPage,
+        q
+    }) {
+        const token = localStorage.getItem('accessToken');
+
+        if (!token) return;
+
+        return api.call().get('/search/courses/get', {
+            params: {
+                page,
+                per_page: perPage,
+                q,
+            },
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + window.btoa(unescape(encodeURIComponent(token))),
+            },
+        })
+    },
+
     getListCourseByCategorySlug({
         page = 1,
         perPage = 10,

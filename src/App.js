@@ -11,6 +11,7 @@ import CourseIntroPage from "./pages/CourseIntroPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import SettingsPage from "./pages/SettingsPage";
+import SearchPage from "./pages/SearchPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 import ModalLoadingFullScreen from "./pages/ModalLoadingFullScreen";
@@ -67,6 +68,9 @@ function App() {
       }
       <section className="main">
         <Switch>
+          <Route path="/search">
+            <SearchPage />
+          </Route>
           <Route path="/settings">
             <SettingsPage />
           </Route>

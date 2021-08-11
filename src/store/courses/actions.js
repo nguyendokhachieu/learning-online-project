@@ -7,6 +7,51 @@ export const ACT_FETCH_USER_REGISTERED_COURSE = 'ACT_FETCH_USER_REGISTERED_COURS
 export const ACT_UPDATE_CURRENT_LESSON_INFO = 'ACT_UPDATE_CURRENT_LESSON_INFO';
 export const ACT_FETCH_USER_REGISTERED_COURSES_LIST = 'ACT_FETCH_USER_REGISTERED_COURSES_LIST';
 export const ACT_FETCH_LIST_COURSES_BY_CATEGORY_SLUG = 'ACT_FETCH_LIST_COURSES_BY_CATEGORY_SLUG';
+export const ACT_SEARCH_COURSES = 'ACT_SEARCH_COURSES';
+
+export const actSearchCoursesAsync = ({
+    page = 1,
+    perPage = 6,
+    q = null,
+}) => {
+    return async dispatch => {
+        if (!q) return;
+
+        try {
+            const response = await CourseService.searchCourses({
+                page,
+                perPage,
+                q,
+            });
+
+            if (response?.data.ok) {
+                dispatch(actSearchCourses({
+                    page,
+                    perPage,
+                    list: response?.data.data || [],
+                }))
+            }
+
+        } catch (error) {
+            
+        }
+    }
+}
+
+const actSearchCourses = ({
+    page,
+    perPage,
+    list,
+}) => {
+    return {
+        type: ACT_SEARCH_COURSES,
+        payload: {
+            page,
+            perPage,
+            list,
+        }
+    }
+}
 
 export const actFetchListCoursesByCategorySlugAsync = ({
     page = 1,

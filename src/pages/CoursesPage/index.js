@@ -4,7 +4,6 @@ import { useHistory, useLocation } from "react-router";
 
 import CategoriesList from "../../components/CategoriesList";
 import CoursesList from "../../components/CoursesList";
-import NotFound from "../../components/NotFound";
 
 export default function CoursesPage() {
   const location = useLocation();

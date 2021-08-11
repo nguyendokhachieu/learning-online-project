@@ -1,12 +1,12 @@
 @import "../../../assets/scss/variables";
 
-.course-item {
+.search-renderedItem-c {
     width: calc(33.3333333333% - 1.5rem);
     margin-left: 0.75rem;
     margin-right: 0.75rem;
     margin-bottom: 3rem;
 
-    .course-item-inner {
+    .course-itemSearchRenderer-inner {
         width: 100%;
         height: 45rem;
         display: flex;
