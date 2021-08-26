@@ -19,11 +19,11 @@ export default function SettingsNavigation() {
             Thay đổi mật khẩu
           </Link>
         </li>
-        <li className={ history.location.pathname === '/settings/upload-avatar' ? "settings-se-item active" : "settings-se-item" }>
+        {/* <li className={ history.location.pathname === '/settings/upload-avatar' ? "settings-se-item active" : "settings-se-item" }>
           <Link to="/settings/upload-avatar" className="settings-nav-link">
             Cập nhật ảnh đại diện
           </Link>
-        </li>
+        </li> */}
       </ul>
     </div>
   );
