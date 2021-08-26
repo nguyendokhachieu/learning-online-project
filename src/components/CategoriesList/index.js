@@ -15,12 +15,13 @@ export default function CategoriesList() {
     if (loading) return;
 
     setLoading(true);
+
     dispatch(actGetAllCategoriesAsync()).then(() => {
-      setLoading(false)
+      setLoading(false);
     })
 
   }, [])
-
+  
   return (
     <div className="categories-section">
       <ul className="categories-list">

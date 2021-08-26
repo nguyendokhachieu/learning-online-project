@@ -31,12 +31,12 @@ export default function CoursesList({
     });
 
   }
-
+console.log(list);
   useEffect(() => {
     if (loading) return;
 
     setLoading(true);
-    
+
     dispatch(actFetchListCoursesByCategorySlugAsync({
       page: 1,
       perPage: 6,
@@ -45,7 +45,7 @@ export default function CoursesList({
       setLoading(false);
     });
 
-  }, [dispatch]);
+  }, [dispatch, categorySlug]);
 
   return (
     <>

@@ -3,6 +3,7 @@ import "./assets/scss/app.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 
+import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import DetailLessonPage from "./pages/DetailLessonPage";
@@ -90,7 +91,7 @@ function App() {
             <RegisterPage />
           </Route>
           <Route exact path="/">
-            {/* <CoursesPage /> */}
+            <HomePage />
           </Route>
           <Route>
             <NotFoundPage />

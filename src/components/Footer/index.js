@@ -15,12 +15,6 @@ export default function Footer() {
                         <a href="https://youtube.com" className="link"> YouTube</a>, 
                         giúp việc tìm kiếm các khóa học online và tự học trở nên dễ dàng hơn 
                     </p>
-                    <p className="desc">
-                        <span>Online Learning</span> lấy cảm hứng từ 
-                        <a href="https://www.fullstack.edu.vn" className="link" target="_blank" rel="noreferrer">
-                            <img src="/assets/images/f8_text_logo.png" alt="fullstack f8" />
-                        </a>
-                    </p>
                 </div>
             </div>
         </footer>
