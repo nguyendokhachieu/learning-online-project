@@ -147,10 +147,10 @@ export default function RegisterPage() {
                                 <input type="email" ref={ emailRef } onChange={ e => setEmail(e.target.value) } value={ email } className="form-control" placeholder="Email của bạn" />
                             </div>
                             <div className="form-control-wrap">
-                                <input type="text" ref={ passwordRef } onChange={ e => setPassword(e.target.value) } value={ password } className="form-control" placeholder="Mật khẩu" />
+                                <input type="password" ref={ passwordRef } onChange={ e => setPassword(e.target.value) } value={ password } className="form-control" placeholder="Mật khẩu" />
                             </div>
                             <div className="form-control-wrap">
-                                <input type="text" onChange={ e => setRePassword(e.target.value) } value={ rePassword } className="form-control" placeholder="Nhập lại mật khẩu" />
+                                <input type="password" onChange={ e => setRePassword(e.target.value) } value={ rePassword } className="form-control" placeholder="Nhập lại mật khẩu" />
                             </div>
                             <div className="form-control-wrap">
                                 <button 
@@ -172,7 +172,7 @@ export default function RegisterPage() {
                             </Link>
                         </div>
                     </div>
-                    <div className="divider">
+                    {/* <div className="divider">
                         <span className="text">Đăng ký bằng tài khoản sẵn có</span>
                     </div>
                     <div className="register-options">
@@ -199,7 +199,7 @@ export default function RegisterPage() {
                                 Đăng ký bằng Google
                             </button>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </section>

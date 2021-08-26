@@ -122,7 +122,7 @@ export default function ChangePassword() {
                   </div>
                   <div className="col-6 col-12">
                     <input 
-                      type="text" 
+                      type="password" 
                       className="input" 
                       placeholder="Nhập mật khẩu cũ" 
                       value={ oldPassword }
@@ -137,7 +137,7 @@ export default function ChangePassword() {
                   </div>
                   <div className="col-6 col-12">
                     <input 
-                      type="text" 
+                      type="password" 
                       className="input" 
                       placeholder="Nhập mật khẩu mới" 
                       value={ newPassword }
@@ -151,7 +151,7 @@ export default function ChangePassword() {
                   </div>
                   <div className="col-6 col-12">
                     <input 
-                      type="text" 
+                      type="password" 
                       className="input" 
                       placeholder="Nhập lại mật khẩu mới" 
                       value={ reNewPassword }

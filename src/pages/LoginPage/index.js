@@ -124,7 +124,7 @@ export default function LoginPage() {
                                 <input type="email" ref={ emailRef } onChange={ e => setEmail(e.target.value) } value={ email } className="form-control" placeholder="Email của bạn" />
                             </div>
                             <div className="form-control-wrap">
-                                <input type="text" ref={ passwordRef } onChange={ e => setPassword(e.target.value) } value={ password } className="form-control" placeholder="Mật khẩu" />
+                                <input type="password" ref={ passwordRef } onChange={ e => setPassword(e.target.value) } value={ password } className="form-control" placeholder="Mật khẩu" />
                             </div>
                             <div className="form-control-wrap">
                                 <button 
@@ -142,7 +142,7 @@ export default function LoginPage() {
                             <p className="para"><a href="/" className="link">Nhấn vào đây để khôi phục</a></p>
                         </div>
                     </div>
-                    <div className="divider">
+                    {/* <div className="divider">
                         <span className="text">HOẶC</span>
                     </div>
                     <div className="login-options">
@@ -165,7 +165,7 @@ export default function LoginPage() {
                                 Đăng nhập bằng Google
                             </button>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="divider">
                         <span className="text">Bạn chưa có tài khoản ?</span>
                     </div>
