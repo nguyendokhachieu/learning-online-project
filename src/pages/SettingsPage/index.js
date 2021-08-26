@@ -43,7 +43,7 @@ export default function SettingsPage() {
                     <Switch>
                         <Route exact path="/settings/account"><AccountInfo /></Route>
                         <Route exact path="/settings/change-password"><ChangePassword /></Route>
-                        <Route exact path="/settings/upload-avatar"><UploadAvatar /></Route>
+                        {/* <Route exact path="/settings/upload-avatar"><UploadAvatar /></Route> */}
                         <Route>
                             <div className="settings-not-exist">
                                 <h2 className="settings-title-xs settings-title-m">Không có cài đặt bạn lựa chọn</h2>

@@ -1,6 +1,6 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger'
+import logger from 'redux-logger';
 
 import { courseReducer } from "./courses/reducer";
 import { modalsReducer } from './modals/reducer';
@@ -20,4 +20,4 @@ const rootReducer = combineReducers({
     categories: categoriesReducer,
 });
 
-export const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+export const store = createStore(rootReducer, applyMiddleware(thunk));
