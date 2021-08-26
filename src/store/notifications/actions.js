@@ -12,8 +12,6 @@ export const actReadNotificationAsync = ({
                 allOrSingle,
                 notificationId,
             })
-
-            console.log(response);
         } catch (error) {
             
         }

@@ -7,7 +7,6 @@ export default function DeleteComment({
     comment = null,
 }) 
 {
-    console.log(comment);
     const confRef = useRef();
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);

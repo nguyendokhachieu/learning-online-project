@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 
 import { CourseService } from "../../services/course";
 import { actFetchUserRegisteredCourseAsync, actRegisterNewCourse } from "../../store/courses/actions";
-import { actShowLoadingFullscreen } from "../../store/modals/actions";
+import { actShowLoadingFullscreen, actShowNotificationCard } from "../../store/modals/actions";
 
 export default function CourseRegister({ 
 	courseDetail = null 
@@ -14,12 +14,20 @@ export default function CourseRegister({
   	const dispatch = useDispatch();
   	const [loading, setLoading] = useState();
 	const [hasBeenRegistered, setHasBeenRegistered] = useState(false);
+	const { user } = useSelector(state => state.users.currentUser);
 
   	const { registeredCourseDetail } = useSelector(state => state.courses);
 
   	function handler() {
 	  	if (loading) return;
 	  	if (!courseDetail) return;
+
+		if (!user) {
+			dispatch(actShowNotificationCard({
+				content: 'Vui lòng đăng nhập trước khi tham gia khóa học!',
+			}));
+			return;
+		}
 
 	  	setLoading(true);
 

@@ -31,7 +31,7 @@ export default function CoursesList({
     });
 
   }
-console.log(list);
+
   useEffect(() => {
     if (loading) return;
 
