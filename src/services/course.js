@@ -7,10 +7,10 @@ export const CourseService = {
         perPage,
         q
     }) {
-        const token = localStorage.getItem('accessToken');
+        // const token = localStorage.getItem('accessToken');
 
-        if (!token) return;
-
+        // if (!token) return;
+        const token = '';
         return api.call().get('/search/courses/get', {
             params: {
                 page,
@@ -30,9 +30,10 @@ export const CourseService = {
         categorySlug = null,
     }) 
     {
-        const token = localStorage.getItem('accessToken');
+        // const token = localStorage.getItem('accessToken');
+        const token = '';
 
-        if (!token) return;
+        // if (!token) return;
         if (!categorySlug) return;
 
         return api.call().get('/courses/category/get', {

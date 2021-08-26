@@ -2,9 +2,10 @@ import { api } from "./api";
 
 export const CategoryService = {
     getAllCategories() {
-        const token = localStorage.getItem('accessToken');
+        // const token = localStorage.getItem('accessToken');
 
-        if (!token) return;
+        // if (!token) return;
+        const token = '';
 
         return api.call().get('/categories/get', {
             method: 'GET',
